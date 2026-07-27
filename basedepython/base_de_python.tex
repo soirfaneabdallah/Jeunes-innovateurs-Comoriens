@@ -63,100 +63,254 @@
 	showtabs=false,                  
 	tabsize=2
 }
+\title{Les fondations du programmation Python}
+\author{\textbf{\textit{Abdallah Houmadi SOIRFANE}}}
+\date{\today}
 \usepackage[left=1.4cm,right=1.4cm,top=2cm,bottom=2cm]{geometry}
-\author{Soirfane Abdallah Houmadi}
+
 \begin{document}
+	  \maketitle
 	
 		\thispagestyle{empty}% 
 	     
 
-	    \section{Les fondations du programmation Python}
-	    Python est réputé pour sa syntaxe claire et lisible, ce qui en fait un excellent langage de programmation pour les débutants. Avant de plonger dans des projets plus complexes, il est essentiel de maîtriser les instructions de base qui constituent les fondements de la programmation en Python.
-	    \section{Variables et Types de Données}
-	    En Python, vous pouvez facilement déclarer des variables sans spécifier explicitement leur type de données. Le type est automatiquement attribué en fonction de la valeur assignée :\\
-	    \textbf{Exemple:}\\
-         \begin{lstlisting}[language=Python]
- 
-message = "Bonjour"
-nombre = 25 
-         \end{lstlisting}
- \textbf{\begin{flushleft}
- 		Ce que vous devez retenir:
- \end{flushleft}}
-\begin{itemize}
-	\item [\ding{172}] Pour déclarer une variable, il faut la donner un nom: " message" et "nombre" comme l'exemple précédent le montre.
-	\item [\ding{173}] Si vous déclarer une variable, il faut systématiquement l'attribuer une valeur, pour que Python comprendre le type du variable.
-\end{itemize}
-Pour voir le type d'une valeur en Python, on utilise la fonction \textbf{type}:
-  \begin{lstlisting}[language=Python]
-message = "Bonjour"
-print(type(message))
-\end{lstlisting}
-\`A cette stade peut-\^etre la notion de \textbf{fonction} ne vous parle pas, mais ne vous en fait pas une simple copie coller fera largement l'affaire.\\
-\textbf{Types de Données}:
-\begin{lstlisting}[language=Python]
-nom = "Ali" # str (String,Chaine de caractere)
-age=19 #int (Entier)
-taille= 1.70 # flottant(reel)
-etuiant=True # Boolleen
-\end{lstlisting}
-Comme vous le remarquez, il y a du code précéder par le symbole  dièse. C'est ce qu'on appel un commentaire, cette notion existe sur tout les langages de programmation mais il est exprimer d'une manière différente. Par exemple en \textbf{Python} on utilise le symbole dièse et double slashe et  en \textbf{Java}, bref vous avez compris l'idée. Et là vous vous demander peut \^etre \textbf{ce quoi cet histoire commentaire}, \\eh bien on utilise les commentaire pour commenter notre code et ce dernier ne sera pas pris en considération lors de exécution.\\
-\textbf{Exemple:}
-\begin{lstlisting}[language=Python]
-# Je declare une variable de type <str> et je l'affecte a la valeur <Ali>
-nom = "Ali"
-\end{lstlisting}
+	    \section{Introduction}
+	
+	   La programmation, c'est quoi ?\\[0.2cm]
+	   Si vous demandez à un ingénieur, il vous parlera de boucles, de fonctions, de gestion de mémoire. Si vous demandez à un prof, il vous parlera de logique et d'algorithmique.\\[0.2cm]
+	   Mais si vous demandez à votre pote qui a déjà essayé, il vous répondra : \textit{"C'est un truc qui te rend fou pendant trois heures, et quand ça marche enfin, tu te sens plus fort que Dieu."}\\[0.2cm]
+	   
+	   La première réaction qu'on a quand on ouvre un terminal, c'est : \textit{"Mais qu'est-ce que je dois taper ? Pourquoi ça plante ? Et surtout, est-ce que l'ordinateur me prend pour un con ?"}\\[0.2cm]
+	   
+	   Pour bien comprendre ce qu'est Python, faisons un petit pas en arrière. Pas un Big Bang, juste un petit pas.\\[0.2cm]
+	   
+	   Un ordinateur, c'est un cerveau hyper puissant, mais complètement débile. Il est capable de faire des milliards de calculs par seconde. Mais si vous ne lui dites pas \textit{exactement} quoi faire, il ne fait rien. Il attend. Il est bête, mais il est rapide.\\[0.2cm]
+	   
+	   Python, c'est le langage qu'on utilise pour parler à ce cerveau débile. C'est une langue. Une langue avec des mots ("print", "if", "for") et une grammaire ultra stricte (les deux-points, les indentations, les parenthèses). Si vous respectez la grammaire, le cerveau exécute votre ordre. Si vous faites une faute, il vous insulte avec un message d'erreur rouge. C'est une relation compliquée. Je l'avoue.\\[0.2cm]
+	   
+	   Dans ce cours, on va apprendre à parler cette langue. Pas pour devenir des pros, mais pour être capables de lui dire \textit{"Tiens, regarde cette image, dis-moi ce que c'est"}. Et ça, c'est déjà de la magie.
+	   \section{Variables et Types de Données}
+	   
+	   \subsection{Le problème du jour : la mémoire de poisson rouge}
+	   
+	   Imaginez que vous arrivez dans un nouveau lycée, disons le lycée de Bambao. Vous ne connaissez personne. On vous présente votre meilleur pote de la journée : il s'appelle \og Youssouf \fg (oui, c'est son vrai nom), il a 17 ans, il mesure 1,82 m, et il est absolument convaincu d'\^etre le prochain Mbappé.
+	   
+	   Vous vous dites : \og Je vais retenir tout ça, c'est facile. \fg
+	   
+	   Deux heures plus tard, vous croisez un grand gars dans le couloir. Vous lui dites : \og Salut... euh... Youssouf ? Ahmed ? \fg Il vous regarde avec un air de chien battu. Raté.
+	   
+	   Le problème, c'est que votre cerveau est une passoire. Il oublie. Il mélange. Il invente.
+	   
+	   Maintenant, remplacez votre cerveau par un ordinateur. C'est pareil, mais en pire. Un ordinateur, il ne retient absolument rien. Il est aussi vide qu'un frigo apr\`es une soirée pizza. Chaque fois que vous le redémarrez, il fait une amnésie totale.
+	   
+	   Alors, comment fait-on pour qu'un ordinateur se souvienne de \og Youssouf \fg ?
+	   
+	   On va lui donner des \textbf{étiquettes} et des \textbf{boîtes}.
+	   
+	   \subsection{Vous avez dit \og Variables \fg ?}
+	   
+	   Une \textbf{variable}, c'est exactement ça : une boîte rangée dans la mémoire de l'ordinateur, avec une étiquette collée dessus.
+	   
+	   Vous écrivez un nom sur l'étiquette (le \textbf{nom de la variable}), et vous mettez un truc dedans (la \textbf{valeur}). Quand vous voulez ressortir le truc, vous appelez la boîte par son nom.
+	   
+	   Python, lui, a une particularité : il est un peu fainéant. Il ne veut pas qu'on lui dise en avance ce qu'il va mettre dans la boîte. Il préfère regarder le contenu et décider tout seul. C'est ce qu'on appelle le \textbf{typage dynamique}. En gros, il juge le livre par sa couverture.
+	   
+	   Regardez :
+	   
+	   \begin{lstlisting}[language=Python]
+	   	message = "Bonjour"
+	   	nombre = 25
+	   \end{lstlisting}
+	   
+	   Ici, Python regarde \texttt{"Bonjour"} avec ses guillemets, il se dit \og Ah, c'est du texte ! \fg et il range ça dans la boîte \texttt{message}. Puis il regarde \texttt{25}, il voit que c'est un chiffre sans virgule, et il le met dans \texttt{nombre}. Il n'a pas eu besoin de préciser. C'est pratique, non ?
+	   
+	   \textbf{\begin{flushleft}
+	   		Ce que vous devez retenir:
+	   \end{flushleft}}
+	   \begin{itemize}
+	   	\item [\ding{172}] Une variable, c'est une boîte avec une étiquette. L'étiquette, c'est le nom. Le contenu, c'est la valeur.
+	   	\item [\ding{173}] Vous ne pouvez pas avoir une boîte vide. En programmation, une variable non initialisée, ça n'existe pas. C'est comme un yaourt sans yaourt dedans : ce n'est plus un yaourt.
+	   \end{itemize}
+	   
+	   \subsection{Les différents types de boîtes (ou comment ne pas mettre une chaussette dans une boîte à chaussures)}
+	   
+	   Python est malin, mais il n'est pas devin. Si vous lui mettez du texte dans une boîte, il ne pourra pas faire de calculs avec. Et si vous lui mettez un nombre, il ne pourra pas le transformer en poème. Il faut donc connaître les sortes de boîtes qui existent.
+	   
+	   Heureusement, il n'y en a que quatre à retenir pour commencer :
+	   
+	   \begin{itemize}
+	   	\item [\ding{182}] \textbf{Les chaînes de caractères (str)} : c'est du texte. N'importe quel texte. Et pour que Python comprenne que c'est du texte, on le met entre guillemets (simples ou doubles, il s'en fiche). C'est comme une étiquette qui dit : \og Attention, contenu fragile, à manipuler comme du texte. \fg
+	   	\item [\ding{183}] \textbf{Les entiers (int)} : des nombres ronds. Des vrais. Sans virgule. \texttt{3}, \texttt{-12}, \texttt{2026}. C'est le genre de nombre qu'on utilise pour compter des moutons.
+	   	\item [\ding{184}] \textbf{Les flottants (float)} : des nombres à virgule. En informatique, on dit \og flottant \fg parce que la virgule \og flotte \fg (en vrai, c'est un point, mais on va pas chipoter). \texttt{3.14}, \texttt{-0.5}, \texttt{1.82}. C'est pour les mesures, les prix, les notes de maths.
+	   	\item [\ding{185}] \textbf{Les booléens (bool)} : c'est soit \textbf{True} (vrai), soit \textbf{False} (faux). C'est la réponse à toutes les questions que vous vous posez. Est-ce que Youssouf est le prochain Mbappé ? \texttt{False}. Est-ce que vous avez compris les variables ? \texttt{True} (on croise les doigts).
+	   \end{itemize}
+	   
+	   Mais comment savoir ce qu'il y a dans une boîte sans l'ouvrir ? Python nous donne une petite lampe torche : la fonction \texttt{type()}.
+	   
+	   \begin{lstlisting}[language=Python]
+	   	nom = "Soirfane"          # str (String, Chaine de caracteres)
+	   	age = 19                  # int (Entier)
+	   	taille = 1.70             # float (Reel)
+	   	etudiant = True           # bool (Booleen)
+	   	
+	   	print(type(age))          # Affiche <class 'int'>
+	   \end{lstlisting}
+	   
+	   Et là, vous me dites : \og Mais c'est quoi ce truc \texttt{print} ? C'est quoi cette affaire de \texttt{type()} ? \fg
+	   
+	   Eh bien, pour l'instant, retenez juste que \texttt{print()} est la voix de l'ordinateur. C'est lui qui crie ce qu'il a dans le ventre. Et \texttt{type()}, c'est un détective qui va fouiller dans votre boîte pour vous dire ce qu'il y a dedans. Lancez-le, il vous rendra service.
+	   
+	   \subsection{Les Post-it : les commentaires}
+	   
+	   Vous avez remarqué, dans les codes ci-dessus, il y a des lignes qui commencent par un symbole \texttt{\#}. C'est ce qu'on appelle un \textbf{commentaire}.
+	   
+	   Les commentaires, c'est le petit mot doux que vous laissez dans votre code pour expliquer à vous-même (ou à votre pote qui va relire votre travail dans trois mois) ce que vous avez fait.
+	   
+	   L'ordinateur, lui, il s'en fiche. Il ne les lit pas. Il les ignore. C'est comme un Post-it collé sur votre frigo : il est là, tout le monde le voit, mais le frigo continue de faire son boulot sans s'en soucier.
+	   
+	   \begin{lstlisting}[language=Python]
+	   	# Je declare une variable de type <str> et je l'affecte a la valeur <Soirfane>
+	   	nom = "Soirfane"
+	   \end{lstlisting}
+	   
+	   Pourquoi écrire des commentaires ? Parce qu'un jour, vous allez relire votre code et vous dire : \og Mais pourquoi j'ai mis 42 ici ?! \fg Et là, si vous avez un commentaire, vous vous souviendrez que \texttt{42} est la réponse à la vie, l'univers et le reste. Sinon, vous passerez deux heures à chercher.
+	   
+	   Alors, prenez l'habitude dès maintenant. Un petit \texttt{\#} par ci, un petit \texttt{\#} par là. Votre futur vous vous remerciera.
 \section{Opérations de base et Structures de contrôle}
+
 \subsection{Opérations de base}
-Dans la section précédente, on a vu comment déclarer des variables, connaître leurs types et même faire des commentaires. \`A présent , nous allons apprendre les bases des opérations arithmétiques et de comparaison en Python. Pas si vite, c'est quoi une opération arithmétique ? Eh bien, ce sont des opérations mathématiques fondamentales que vous pouvez réaliser facilement avec des nombres.
-\begin{itemize}
-	\item [\ding{182}] Opération arithmétique
-	\begin{lstlisting}[language=Python] 
-	# Operation arithmetique
-	x=1
-	y=3.6
-	print(x + y)  # L'addition de x et y
-	print(x - y)  # La soustraction de x et y
-	print(x * y)  # La multiplication de x par y
-	print(x / y)  # La division reel de x par y
-	print(x // y) # La division entier de x par y
-	print(x ** y) # x exposant y
-	\end{lstlisting}
-	\item [\ding{183}] Opération de comparaison
-	\begin{lstlisting}[language=Python]
-	# Operation comparaison
-	x=1
-	y=3.6
-	print(x < y)     # inferiorite
-	print(x > y)     # superiorite
-	print(x <= y)    # inferieur ou egale , meme chose pour superieur ou egale
-	print(x != y)    # difference
-	print(x == y)    # egalite
-	\end{lstlisting}
-	\item [\ding{184}] Opération de Logique
-	\begin{lstlisting}[language=Python]
-	# Operation de Logique
-	print(True & True) # AND(et)
-	print(False | True) # OR(ou)
-	print(False ^ True) # XOR(ou exlusif)
-	\end{lstlisting}
-\end{itemize}
-\par Pour bien comprendre ce code, il est important de l'exécuter vous-même, en suivant chaque étape attentivement pour une meilleure assimilation avant de poursuivre notre aventure. N'oubliez pas d'ajouter chaque information que vous jugez utile dans votre boîte à outils de développeur. Et là, vous allez me dire : "C'est bon, on a compris la notion d'opération arithmétique. Si nous faisons l'addition de deux nombres, nous obtenons un nombre. Mais si nous effectuons une opération de comparaison, que devrions-nous obtenir ?" En fait, c'est simple à comprendre. Disons 2 < 3 (2 est inférieur à 3) : vrai ou faux ? Et c'est tout, je pense que vous avez déjà la réponse. Une opération de comparaison nous renvoie soit vrai (\textbf{True}) soit faux (\textbf{False}). En autre terme on obtient un Booléen. Et c'est la même avec les opérations de logique. C'est trop beau n'est ce pas ! \\
-Vous pouvez combiner ces trois opérations pour créer des structures plus complexe et intéressantes:\\
-\textbf{Exemple:}
-\begin{lstlisting}[language=Python]
-# Declaration des variables
-x,y=1,3
-print((x+y) >= 3 & x >0)
-\end{lstlisting}
-\subsection{Structures de contrôle : Conditions et Boucles}
-\par Nous allons maintenant explorer deux éléments fondamentaux de la programmation : les conditions et les boucles. Ces structures de contrôle permettent d'exécuter des morceaux de code de manière sélective ou répétée. Commençons par les conditions.
+
+\subsubsection{Le problème du jour : le marché de Volo-Volo}
+
+Imaginez que vous êtes au marché de Volo-Volo. Vous avez 10 000 francs comoriens en poche. Vous voulez acheter 3 kg de bananes à 1 500 francs le kilo, et 2 kg de mangues à 2 000 francs le kilo.
+
+Vous sortez votre calculette (ou votre cerveau, si vous êtes courageux) et vous faites le calcul :
+\[
+3 \times 1500 + 2 \times 2000 = 4500 + 4000 = 8500
+\]
+
+Il vous reste 1 500 francs. Vous pouvez encore acheter un soda. Vous êtes content.
+
+Maintenant, imaginez que vous deviez faire ça 10 000 fois par jour. Pour un ordinateur, c'est son métier. Il est né pour ça. Il fait des calculs plus vite que vous ne dites \og Mbappé \fg. Mais il faut lui donner les bonnes instructions.
+
+C'est là qu'interviennent les \textbf{opérations arithmétiques}.
+
+\subsubsection{Les opérations arithmétiques : le calcul mental de l'ordinateur}
+
+Python sait faire des calculs. Tous les calculs. Il est une machine à calculer surpuissante déguisée en langage de programmation. Les opérations de base, vous les connaissez déjà :
 
 \begin{itemize}
-	\item [\ding{182}] \textbf{Conditions}
-	\par Une condition permet de tester si une expression est vraie ou fausse, et d'exécuter un bloc de code en conséquence. En Python, on utilise les instructions `if`, `elif`, et `else` pour cela.
-	
-	\begin{lstlisting}[language=Python]
+	\item [\ding{182}] \textbf{Addition} : \texttt{+} (pour ajouter des bananes)
+	\item [\ding{183}] \textbf{Soustraction} : \texttt{-} (pour enlever le prix du soda)
+	\item [\ding{184}] \textbf{Multiplication} : \texttt{*} (pour savoir combien coûtent 3 kilos)
+	\item [\ding{185}] \textbf{Division réelle} : \texttt{/} (pour partager équitablement)
+	\item [\ding{186}] \textbf{Division entière} : \texttt{//} (pour savoir combien de parts entières on peut faire)
+	\item [\ding{187}] \textbf{Puissance} : \texttt{**} (pour mettre en exposant)
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+	# Operation arithmetique
+	x = 1
+	y = 3.6
+	print(x + y)   # L'addition de x et y
+	print(x - y)   # La soustraction de x et y
+	print(x * y)   # La multiplication de x par y
+	print(x / y)   # La division reelle de x par y
+	print(x // y)  # La division entiere de x par y
+	print(x ** y)  # x exposant y
+\end{lstlisting}
+
+\subsubsection{Opérations de comparaison : le juge de la vie}
+
+Vous avez déjà fait des comparaisons dans votre vie. Par exemple :
+
+\begin{itemize}
+	\item \og Est-ce que Youssouf est plus grand que Soirfane ? \fg
+	\item \og Est-ce que j'ai assez d'argent pour acheter un soda ? \fg
+	\item \og Est-ce que mon équipe de foot a marqué plus de buts que l'autre ? \fg
+\end{itemize}
+
+Le résultat, c'est toujours \textbf{vrai} ou \textbf{faux}. Il n'y a pas de \og peut-être \fg en programmation. C'est binaire. C'est tranché. C'est la vie.
+
+En Python, on compare avec des symboles :
+
+\begin{itemize}
+	\item [\ding{182}] \texttt{<} : inférieur à
+	\item [\ding{183}] \texttt{>} : supérieur à
+	\item [\ding{184}] \texttt{<=} : inférieur ou égal
+	\item [\ding{185}] \texttt{>=} : supérieur ou égal
+	\item [\ding{186}] \texttt{==} : égal à (attention, deux signes \texttt{==} ! Un seul \texttt{=} c'est pour affecter, c'est le piège classique)
+	\item [\ding{187}] \texttt{!=} : différent de
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+	# Operation comparaison
+	x = 1
+	y = 3.6
+	print(x < y)    # inferieur
+	print(x > y)    # superieur
+	print(x <= y)   # inferieur ou egal
+	print(x != y)   # different
+	print(x == y)   # egalite
+\end{lstlisting}
+
+À chaque comparaison, Python vous répond \texttt{True} ou \texttt{False}. C'est comme s'il vous disait \og Oui \fg ou \og Non \fg sans hésiter. Il n'a pas de doute. L'ordinateur ne doute jamais. Il a tort parfois, mais il ne doute pas.
+
+\subsubsection{Opérations logiques : le ET, le OU, le XOR}
+
+Là, on rentre dans le vrai du vrai. Les opérateurs logiques, c'est la base de la réflexion conditionnelle. Ils servent à combiner plusieurs conditions.
+
+\begin{itemize}
+	\item [\ding{182}] \texttt{and} (ou \texttt{\&}) : le \textbf{ET} logique. Les deux conditions doivent être vraies.
+	\item [\ding{183}] \texttt{or} (ou \texttt{|}) : le \textbf{OU} logique. Au moins une des deux conditions doit être vraie.
+	\item [\ding{184}] \texttt{xor} (ou \texttt{\^}) : le \textbf{OU exclusif}. Une et une seule des deux conditions doit être vraie. C'est le \og soit l'un, soit l'autre, mais pas les deux \fg.
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+	# Operation de Logique
+	print(True and True)    # AND (et) -> True
+	print(False or True)    # OR (ou) -> True
+	print(False ^ True)     # XOR (ou exclusif) -> True
+\end{lstlisting}
+
+\subsubsection{Combiner tout ça : la recette du succès}
+
+Vous pouvez mélanger les trois types d'opérations pour créer des expressions complexes. C'est comme quand vous dites :
+
+\og \textbf{Si} j'ai fini mes devoirs \textbf{ET} que j'ai rangé ma chambre \textbf{ALORS} je peux sortir jouer au foot. \fg
+
+\begin{lstlisting}[language=Python]
+	# Declaration des variables
+	x, y = 1, 3
+	print((x + y) >= 3 and x > 0)  # True
+\end{lstlisting}
+
+Ici, Python calcule d'abord \texttt{x + y} (ça fait 4). Puis il vérifie si 4 est supérieur ou égal à 3 (vrai). Ensuite, il vérifie si \texttt{x > 0} (vrai). Enfin, il fait le \texttt{and} entre les deux. Le résultat est \texttt{True}. Il est content. Vous aussi.
+
+
+
+
+\subsection{Structures de contrôle : Conditions et Boucles}
+
+\subsubsection{Le problème du jour : le videur de la boîte de nuit}
+
+Vous êtes à la sortie du lycée de Bambao. C'est vendredi soir. Vous voulez aller à la fête du quartier. Mais il y a un videur à l'entrée. Il est grand. Il est costaud. Il a un regard qui tue.
+
+Il vous regarde. Il vous jauge. Il prend une décision.
+
+\begin{itemize}
+	\item \textbf{Si} vous avez plus de 18 ans, il vous laisse entrer.
+	\item \textbf{Sinon, si} vous êtes avec un grand frère qui a 18 ans, il vous laisse entrer.
+	\item \textbf{Sinon}, il vous vire. C'est la vie.
+\end{itemize}
+
+C'est exactement comme ça que fonctionne une \textbf{condition} en programmation. L'ordinateur, c'est le videur. Il regarde une situation, il vérifie une condition, et il décide quoi faire.
+
+\subsubsection{Les conditions : le videur numérique}
+
+En Python, on utilise trois mots magiques pour les conditions : \texttt{if}, \texttt{elif} (qui veut dire "sinon si"), et \texttt{else} (le fourre-tout de la dernière chance).
+
+\begin{lstlisting}[language=Python]
 	# Exemples de conditions
 	x = 10
 	y = 5
@@ -167,55 +321,748 @@ print((x+y) >= 3 & x >0)
 	print("x est egal a y")
 	else:
 	print("x est plus petit que y")
-	\end{lstlisting}
+\end{lstlisting}
+
+Ici, Python joue le videur :
+
+\begin{itemize}
+	\item Il regarde si \texttt{x} est plus grand que \texttt{y}. \textbf{Si} c'est vrai, il affiche "x est plus grand".
+	\item \textbf{Sinon, si} \texttt{x} est égal à \texttt{y}, il affiche "x est égal".
+	\item \textbf{Sinon} (donc si \texttt{x} est plus petit), il affiche "x est plus petit".
+\end{itemize}
+
+C'est binaire. C'est tranché. C'est comme le videur : il n'y a pas de \og peut-être \fg. Tu passes ou tu passes pas.
+
+Et vous pouvez rendre les conditions plus complexes en utilisant les opérateurs logiques qu'on a vus tout à l'heure :
+
+\begin{lstlisting}[language=Python]
+	age = 17
+	accompagne = True
 	
-	\par Ici, la condition `if` vérifie si `x` est plus grand que `y`. Si c'est vrai, le premier bloc est exécuté. Si c'est faux, on passe à la condition `elif` pour vérifier si `x` est égal à `y`. Enfin, si aucune des deux conditions précédentes n'est vraie, le bloc `else` est exécuté.
-	
-	\par Vous pouvez imaginer des conditions encore plus complexes en combinant plusieurs expressions à l'aide des opérateurs logiques (`and`, `or`, etc.).
-	
-	\item [\ding{183}] \textbf{Boucles}
-	\par Les boucles permettent d'exécuter un morceau de code plusieurs fois, soit pour un nombre déterminé de répétitions, soit tant qu'une condition est vraie. Il existe deux types principaux de boucles en Python : la boucle `for` et la boucle `while`.
-	
-	\textbf{Boucle for} :
-	\par La boucle `for` permet de parcourir une séquence (comme une liste, une chaîne de caractères, etc.) et d'exécuter un bloc de code pour chaque élément de cette séquence.
-	
-	\begin{lstlisting}[language=Python]
-	# Boucle for
+	if age >= 18 or (age >= 16 and accompagne):
+	print("Bienvenue a la fete, frere !")
+	else:
+	print("Desole, mon gars. Reviens dans deux ans.")
+\end{lstlisting}
+
+\subsubsection{Les boucles : le vendeur de chips}
+
+Maintenant, imaginez que vous êtes au stade de Hamramba. Il y a un match de foot. Youssouf, le vendeur de chips, fait le tour des gradins. Il a un gros sachet de chips. Il doit le distribuer à tout le monde.
+
+\textbf{Il va parcourir chaque siège, un par un, jusqu'à ce qu'il ait fini.}
+
+C'est une \textbf{boucle}. L'ordinateur adore les boucles. Il est obsédé par la répétition. C'est son petit plaisir.
+
+Il existe deux types de boucles :
+
+\begin{itemize}
+	\item [\ding{182}] \textbf{La boucle \texttt{for}} : le facteur. Il sait exactement combien de maisons il doit visiter. Il parcourt une liste, un élément après l'autre, et quand il a fini, il s'arrête.
+	\item [\ding{183}] \textbf{La boucle \texttt{while}} : le gars qui fait des pompes. Il continue tant que la condition est vraie. Si vous ne lui dites jamais d'arrêter, il continue à l'infini. Et c'est là que le drame arrive.
+\end{itemize}
+
+\textbf{Boucle \texttt{for} : le facteur}
+
+\begin{lstlisting}[language=Python]
+	# Boucle for : le facteur
 	fruits = ["pomme", "banane", "orange"]
 	for fruit in fruits:
 	print(fruit)
-	\end{lstlisting}
-	
-	\par Dans cet exemple, la boucle `for` parcourt chaque élément de la liste `fruits` et l'affiche. À chaque itération, la variable `fruit` prend la valeur de l'élément suivant dans la liste.
-	
-	\textbf{Boucle while} :
-	\par La boucle `while` permet d'exécuter un bloc de code tant qu'une condition est vraie.
-	
-	\begin{lstlisting}[language=Python]
-	# Boucle while
+\end{lstlisting}
+
+Ici, Python prend le premier fruit de la liste ("pomme"), il l'affiche. Puis le deuxième ("banane"), il l'affiche. Puis le troisième ("orange"), il l'affiche. Et quand il n'y a plus de fruits, il s'arrête. Il est content. Vous aussi.
+
+\textbf{Boucle \texttt{while} : le gars qui fait des pompes}
+
+\begin{lstlisting}[language=Python]
+	# Boucle while : les pompes
 	i = 0
 	while i < 5:
-	print(i)
-	i += 1  # equivalent e i = i + 1
-	\end{lstlisting}
-	
-	\par Ici, tant que la variable `i` est inférieure à 5, la boucle continue de s'exécuter, et à chaque itération, la valeur de `i` est incrémentée. Attention aux boucles infinies si la condition ne devient jamais fausse !
-	
-	\item [\ding{184}] \textbf{Combiner conditions et boucles}
-	\par Vous pouvez bien sûr combiner des conditions et des boucles pour créer des programmes plus complexes. Par exemple, en utilisant une boucle avec une condition `if` pour ne traiter que certains éléments :
-	
-	\begin{lstlisting}[language=Python]
+	print(i, "- Je fais une pompe !")
+	i += 1  # equivalent a i = i + 1
+\end{lstlisting}
+
+Ici, Python dit : \og Tant que \texttt{i} est plus petit que 5, je fais une pompe. \fg Il commence avec \texttt{i = 0}. Il fait une pompe. Il ajoute 1 à \texttt{i}. Il recommence. Quand \texttt{i} atteint 5, il s'arrête. Il a fait 5 pompes. Il est fatigué. Mais il est fier.
+
+\textbf{Attention au piège !} Si vous oubliez la ligne \texttt{i += 1}, la condition \texttt{i < 5} reste vraie pour toujours. La boucle tourne à l'infini. L'ordinateur chauffe. Le ventilo s'affole. On dirait un avion qui décolle. C'est spectaculaire, mais c'est un bug. Évitez-le.
+
+\subsubsection{Combiner conditions et boucles : le match de foot}
+
+Vous pouvez mélanger les deux. Par exemple, vous voulez afficher tous les nombres de 0 à 9, mais vous voulez dire \og Mwambo \fg pour les nombres pairs et \og Pas mwambo \fg pour les impairs.
+
+\begin{lstlisting}[language=Python]
 	# Combinaison de condition et boucle
 	for i in range(10):
 	if i % 2 == 0:  # Si i est pair
-	print(f"{i} est un nombre pair")
+	print(f"{i} est un nombre pair. Mwambo !")
 	else:
-	print(f"{i} est un nombre impair")
-	\end{lstlisting}
-	
-	\par Dans cet exemple, la boucle parcourt les nombres de 0 à 9, et pour chaque nombre, la condition `if` vérifie si le nombre est pair (`i \% 2 == 0`). Si c'est le cas, le nombre est affiché comme pair, sinon il est affiché comme impair.
+	print(f"{i} est un nombre impair. Pas mwambo...")
+\end{lstlisting}
+
+La boucle \texttt{for} parcourt les nombres de 0 à 9. Pour chaque nombre, elle pose la question : \og Est-ce que ce nombre est pair ? \fg Si oui, elle affiche \og Mwambo ! \fg Sinon, elle affiche \og Pas mwambo... \fg
+
+C'est beau. C'est simple. C'est de la programmation.
+
+\subsubsection{Résumons : le videur et le vendeur}
+
+\begin{itemize}
+	\item [\ding{172}] \textbf{Conditions} (\texttt{if}, \texttt{elif}, \texttt{else}) : le videur de la boîte de nuit. Il prend une décision en fonction d'une situation.
+	\item [\ding{173}] \textbf{Boucle \texttt{for}} : le facteur. Il parcourt une liste jusqu'au bout.
+	\item [\ding{174}] \textbf{Boucle \texttt{while}} : le gars qui fait des pompes. Il continue tant qu'une condition est vraie. N'oubliez pas la condition de sortie !
+	\item [\ding{175}] \textbf{Combinaison} : la vie réelle. On prend des décisions en répétant des actions.
 \end{itemize}
 
-\par Maintenant que nous avons vu les bases des conditions et des boucles, vous devriez être en mesure de contrôler efficacement le flux d'exécution de vos programmes. En combinant ces structures, vous pouvez écrire des scripts plus dynamiques et interactifs. Continuez à expérimenter ces concepts dans vos propres projets et ajoutez-les à votre boîte à outils Python !
+Maintenant, vous pouvez contrôler le flux de votre programme. Vous savez dire \og Si ceci, alors cela \fg, et \og Répète ça jusqu'à ce que \fg.
 
+C'est comme avoir un super-pouvoir. Vous êtes le maître du temps et des décisions. Utilisez-le avec sagesse. Et surtout, amusez-vous.
+
+
+
+\section{Structures de données : listes, tuples et dictionnaires}
+
+\subsection{Le problème du jour : vous devez ranger votre vie}
+
+Vous avez des affaires partout. Des chansons, des numéros de téléphone, des coordonnées GPS, des notes de cours, des noms de potes. Vous ne savez plus où ranger quoi.
+
+Si vous mettez tout dans une seule boîte, c'est le bazar. Si vous utilisez une boîte par affaire, vous avez trop de boîtes. Il vous faut des outils adaptés.\\
+
+Python vous donne trois outils magiques :
+
+\begin{itemize}
+	\item [\ding{172}] La \textbf{liste} : un tiroir à compartiments.
+	\item [\ding{173}] Le \textbf{tuple} : une boîte scellée.
+	\item [\ding{174}] Le \textbf{dictionnaire} : un carnet d'adresses.
+\end{itemize}
+
+\subsection{La liste : le tiroir à compartiments}
+
+C'est le plus simple. Vous ouvrez un tiroir, il y a des cases numérotées. Vous mettez un truc dans chaque case. Vous pouvez ajouter, enlever, modifier, ranger dans n'importe quel ordre.
+
+\begin{itemize}
+	\item [\ding{182}] \textbf{Déclaration} : crochets \texttt{[]}.
+	\item [\ding{183}] \textbf{Accès} : \texttt{liste[0]}, \texttt{liste[1]}, etc. On commence à 0.
+	\item [\ding{184}] \textbf{Modifiable} : on peut tout changer.
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+	# La liste : le tiroir
+	fruits = ["pomme", "banane", "orange"]
+	print(fruits[0])        # pomme
+	fruits.append("kiwi")   # ajout
+	fruits[1] = "poire"     # modification
+	print(fruits)           # ["pomme", "poire", "orange", "kiwi"]
+\end{lstlisting}
+
+\textbf{Quand utiliser une liste ?} Quand vous avez une collection d'éléments dans un ordre précis et que vous voulez pouvoir ajouter, supprimer ou modifier des éléments. Par exemple : une playlist, les notes de la classe, les courses du marché.
+
+\subsection{Le tuple : la boîte scellée}
+
+Imaginez une boîte en plastique dur. Vous mettez des affaires dedans, vous la fermez, et personne ne peut plus rien changer. Pas vous, pas l'ordinateur, personne. C'est gravé.
+
+\begin{itemize}
+	\item [\ding{182}] \textbf{Déclaration} : parenthèses \texttt{()}.
+	\item [\ding{183}] \textbf{Accès} : comme une liste (\texttt{tuple[0]}).
+	\item [\ding{184}] \textbf{Non modifiable} : \texttt{tuple[0] = } ? Impossible !
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+	# Le tuple : la boite scellee
+	coords = (11.7033, 43.2556)  # Moroni
+	print("Latitude :", coords[0])
+	# coords[0] = 12.0  # ERREUR ! Le tuple ne se modifie pas.
+\end{lstlisting}
+
+\textbf{Quand utiliser un tuple ?} Pour des données qui ne doivent jamais changer. Par exemple : les coordonnées GPS d'un lieu, une date de naissance, les dimensions d'une image (largeur, hauteur). C'est le coffre-fort des données.
+
+\subsection{Le dictionnaire : le carnet d'adresses}
+
+Vous avez un carnet. Chaque nom est associé à un numéro de téléphone. Vous cherchez \og Youssouf \fg, vous trouvez son numéro. Vous ne parcourez pas tout le carnet, vous allez directement à la bonne page.
+
+\begin{itemize}
+	\item [\ding{182}] \textbf{Déclaration} : accolades \texttt{\{\}}.
+	\item [\ding{183}] \textbf{Accès} : \texttt{dictionnaire["nom"]} pour la valeur.
+	\item [\ding{184}] \textbf{Modifiable} : on peut ajouter, modifier, supprimer des entrées.
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+	# Le dictionnaire : le carnet d'adresses
+	contacts = {
+		"Youssouf": "777 12 34",
+		"Soirfane": "777 56 78"
+	}
+	
+	print("Numero de Youssouf :", contacts["Youssouf"])  # 777 12 34
+	
+	# Ajouter un contact
+	contacts["Hadidja"] = "777 90 12"
+	
+	# Modifier un contact
+	contacts["Youssouf"] = "777 99 99"
+	
+	# Supprimer un contact
+	del contacts["Soirfane"]
+	
+	print(contacts)  # {"Youssouf": "777 99 99", "Hadidja": "777 90 12"}
+\end{lstlisting}
+
+\textbf{Quand utiliser un dictionnaire ?} Quand vous voulez associer des noms (ou des identifiants) à des valeurs. Par exemple : un annuaire, un catalogue de produits (nom \( \rightarrow \) prix), le classement d'une classe (élève \( \rightarrow \) note).
+
+\subsection{Tableau récapitulatif : lequel choisir ?}
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		& \textbf{Liste} & \textbf{Tuple} & \textbf{Dictionnaire} \\
+		\hline
+		\textbf{Syntaxe} & \texttt{[]} & \texttt{()} & \texttt{\{\}} \\
+		\textbf{Accessible par} & indice (0,1,2...) & indice (0,1,2...) & clé (nom, identifiant) \\
+		\textbf{Modifiable ?} & Oui & Non & Oui \\
+		\textbf{Ordre ?} & Oui & Oui & Non (depuis Python 3.7, oui) \\
+		\textbf{Quand l'utiliser ?} & Séquence ordonnée modifiable & Données fixes & Association clé \( \rightarrow \) valeur \\
+		\hline
+	\end{tabular}
+\end{center}
+
+\subsection{Application pratique : l'annuaire du lycée de Bambao}
+
+On va créer un petit système qui gère les élèves du lycée. On va utiliser les trois structures ensemble.
+
+\begin{lstlisting}[language=Python]
+	# Une liste d'eleves (ordre alphabetique)
+	eleves = ["Youssouf", "Soirfane", "Hadidja", "Ali"]
+	
+	# Un tuple pour les coordonnees du lycee (fixes)
+	lycee_coords = (11.7033, 43.2556)
+	
+	# Un dictionnaire pour les classes et ages
+	annuaire = {
+		"Youssouf": {"classe": "Terminale", "age": 17},
+		"Soirfane": {"classe": "Premiere", "age": 16},
+		"Hadidja": {"classe": "Terminale", "age": 18},
+		"Ali": {"classe": "Seconde", "age": 15}
+	}
+	
+	# Afficher tout le monde
+	print("Liste des eleves :", eleves)
+	print("Coordonnees du lycee :", lycee_coords)
+	
+	for nom in eleves:
+	infos = annuaire[nom]
+	print(nom, "est en", infos["classe"], "et a", infos["age"], "ans.")
+\end{lstlisting}
+
+\subsection{Conclusion : vous êtes un organisateur de génie}
+
+Avec ces trois outils, vous pouvez ranger n'importe quoi :
+
+\begin{itemize}
+	\item [\ding{172}] La \textbf{liste} pour les collections ordonnées et modifiables.
+	\item [\ding{173}] Le \textbf{tuple} pour les données fixes qui ne doivent jamais changer.
+	\item [\ding{174}] Le \textbf{dictionnaire} pour associer facilement un nom à une valeur.
+\end{itemize}
+
+Maintenant, quand on vous dit \og range tes données \fg, vous répondez \og liste, tuple ou dictionnaire ? \fg et vous choisissez l'outil parfait. C'est ça, être un vrai programmeur. Allez, on passe à la suite !
+
+\section{Fonctions : votre petit robot personnel}
+
+\subsection{Le problème du jour : le vendeur de beignets}
+
+Youssouf tient un petit stand de beignets au marché de Volo-Volo. Chaque jour, il doit calculer le prix total de ses ventes. Il a 3 types de beignets :
+
+\begin{itemize}
+	\item Les beignets nature : 300 francs pièce.
+	\item Les beignets fourrés au chocolat : 500 francs pièce.
+	\item Les beignets fourrés à la confiture : 450 francs pièce.
+\end{itemize}
+
+Vous vous dites : \og Je vais écrire un programme. \fg
+
+Vous commencez à écrire :
+
+\begin{lstlisting}[language=Python]
+	# Calcul pour un client qui achete 2 nature, 3 chocolat, 1 confiture
+	total = 2 * 300 + 3 * 500 + 1 * 450
+	print("Total :", total)
+\end{lstlisting}
+
+Puis un autre client arrive. Vous écrivez encore :
+
+\begin{lstlisting}[language=Python]
+	# Un autre client : 5 nature, 2 chocolat, 4 confiture
+	total = 5 * 300 + 2 * 500 + 4 * 450
+	print("Total :", total)
+\end{lstlisting}
+
+Puis un autre. Et un autre. Et un autre.
+
+Au bout du 50ème client, vous êtes fatigué. Vous copiez-collez la même ligne encore et encore, en changeant juste les nombres. C'est long. C'est chiant. C'est inutile.
+
+Si vous étiez un vrai programmeur, vous vous diriez : \og Je vais écrire cette formule une fois, et je vais l'appeler quand j'en ai besoin. \fg
+
+C'est exactement ce que font les \textbf{fonctions}.
+
+\subsection{Une fonction, c'est une recette de cuisine}
+
+Vous mettez des ingrédients (ce qu'on appelle des \textbf{paramètres}), vous suivez les étapes (les instructions), et ça vous sort un plat (la \textbf{valeur retournée}). L'avantage, c'est que vous pouvez réutiliser la recette autant de fois que vous voulez sans avoir à réécrire les étapes.
+
+\begin{lstlisting}[language=Python]
+	# Definition d'une fonction qui calcule le total pour Youssouf
+	def prix_beignets(nature, chocolat, confiture):
+	total = nature * 300 + chocolat * 500 + confiture * 450
+	return total
+	
+	# Utilisation de la fonction pour differents clients
+	print("Client 1 :", prix_beignets(2, 3, 1))   # 2 nature, 3 chocolat, 1 confiture
+	print("Client 2 :", prix_beignets(5, 2, 4))   # 5 nature, 2 chocolat, 4 confiture
+	print("Client 3 :", prix_beignets(0, 10, 0))  # 10 chocolat
+\end{lstlisting}
+
+\begin{flushleft}
+	\textbf{Ce que vous devez retenir :}
+\end{flushleft}
+\begin{itemize}
+	\item [\ding{172}] Une fonction se définit avec le mot-clé \texttt{def}, suivi du nom, de parenthèses contenant les paramètres, et d'un deux-points.
+	\item [\ding{173}] Le bloc d'instructions est indenté (comme pour les conditions et les boucles).
+	\item [\ding{174}] Le mot-clé \texttt{return} renvoie le résultat. Si vous ne mettez pas de \texttt{return}, la fonction renvoie \texttt{None} (rien).
+\end{itemize}
+
+\subsection{Pourquoi utiliser des fonctions ?}
+
+Parce que vous êtes fainéant, et c'est une bonne chose !
+
+\begin{itemize}
+	\item [\ding{182}] \textbf{Réutilisabilité} : vous écrivez le code une fois, vous l'utilisez mille fois.
+	\item [\ding{183}] \textbf{Clarté} : votre programme devient plus facile à lire. \texttt{prix\_beignets(2, 3, 1)}, on comprend tout de suite ce que ça fait.
+	\item [\ding{184}] \textbf{Correction facile} : si vous vous trompez dans la formule (par exemple, le prix des beignets change), vous modifiez un seul endroit. Une seule ligne. C'est magique.
+\end{itemize}
+
+\subsection{Les fonctions, c'est comme des robots}
+
+Imaginez que vous avez un petit robot dans votre cuisine. Vous lui dites : \og Robot, fais-moi un café. \fg Il le fait. Vous ne lui redemandez pas de vous expliquer comment il le fait. Il le fait.
+
+Une fonction, c'est pareil. Vous lui donnez un nom (\texttt{prix\_beignets}), vous lui donnez des ingrédients (les paramètres), et il vous rend un résultat. C'est un robot.
+
+\subsection{Les fonctions sans paramètres}
+
+Parfois, vous n'avez pas besoin d'ingrédients. La fonction fait juste son boulot sans rien attendre de vous.
+
+\begin{lstlisting}[language=Python]
+	# Une fonction qui dit bonjour
+	def dire_bonjour():
+	print("Salut la team !")
+	print("Bienvenue dans le cours de Python.")
+	
+	# Appel de la fonction
+	dire_bonjour()
+\end{lstlisting}
+
+\subsection{Les fonctions avec des valeurs par défaut}
+
+Parfois, vous voulez que votre robot ait un comportement par défaut, mais que vous puissiez le changer si vous voulez.
+
+\begin{lstlisting}[language=Python]
+	# Fonction avec valeur par defaut pour le chocolat
+	def prix_beignets(nature, chocolat=0, confiture=0):
+	total = nature * 300 + chocolat * 500 + confiture * 450
+	return total
+	
+	# Appels
+	print("Sans chocolat :", prix_beignets(4, 0, 2))   # 4 nature, 2 confiture
+	print("Avec chocolat :", prix_beignets(2, 3, 1))   # 2 nature, 3 chocolat, 1 confiture
+\end{lstlisting}
+
+\subsection{Les fonctions qui retournent plusieurs valeurs}
+
+Votre robot peut même vous rendre plusieurs choses à la fois. Par exemple, le total et le nombre d'articles.
+
+\begin{lstlisting}[language=Python]
+	# Fonction qui retourne le total et le nombre d'articles
+	def total_et_quantite(nature, chocolat, confiture):
+	total = nature * 300 + chocolat * 500 + confiture * 450
+	quantite = nature + chocolat + confiture
+	return total, quantite
+	
+	# Utilisation
+	resultat = total_et_quantite(2, 3, 1)
+	print("Total :", resultat[0], "Quantite :", resultat[1])
+	
+	# Ou plus simple :
+	total, quantite = total_et_quantite(2, 3, 1)
+	print("Total :", total, "Quantite :", quantite)
+\end{lstlisting}
+
+\subsection{Application pratique : le robot du lycée}
+
+On va créer un petit robot qui vous aide pour vos devoirs.
+
+\begin{lstlisting}[language=Python]
+	# Le robot du lycee
+	def moyenne(notes):
+	return sum(notes) / len(notes)
+	
+	def appreciation(moyenne):
+	if moyenne >= 16:
+	return "Excellent ! Tu es un genie."
+	elif moyenne >= 12:
+	return "Bien. Continue comme ca."
+	elif moyenne >= 10:
+	return "Passable. Tu peux mieux faire."
+	else:
+	return "Il va falloir bosser, mon gars."
+	
+	# Utilisation
+	mes_notes = [14, 12, 16, 9, 18]
+	moy = moyenne(mes_notes)
+	app = appreciation(moy)
+	
+	print("Tes notes :", mes_notes)
+	print("Moyenne :", moy)
+	print("Appreciation :", app)
+\end{lstlisting}
+
+\subsection{Conclusion : vous avez des robots partout}
+
+Avec les fonctions, vous pouvez :
+
+\begin{itemize}
+	\item [\ding{172}] Écrire du code une fois, l'utiliser partout.
+	\item [\ding{173}] Rendre votre code plus clair et plus propre.
+	\item [\ding{174}] Corriger facilement vos erreurs.
+	\item [\ding{175}] Créer vos propres robots pour faire n'importe quoi.
+\end{itemize}
+
+C'est le super-pouvoir ultime. Vous n'êtes plus un simple exécutant, vous êtes un chef d'orchestre. Vous organisez. Vous structurez. Vous déléguez.
+
+La prochaine fois que vous écrirez un programme, demandez-vous : \og Est-ce que je peux mettre ça dans une fonction ? \fg Et si la réponse est oui, faites-le. Votre futur vous remerciera.
+
+\section{Les bibliothèques : le copinage}
+
+\subsection{Le problème du jour : le concours de pronostics de Youssouf}
+
+Youssouf est un grand fan de foot. Chaque week-end, il regarde les matchs de la coupe des Comores. Il organise un concours de pronostics avec ses potes du lycée de Bambao.
+
+Il leur demande : \og Est-ce que vous croyez que l'équipe de Ngazidja va gagner contre l'équipe de Mwali ? \fg
+
+Mais Youssouf n'est pas juste un fan, il est aussi un programmeur. Il veut automatiser son concours. Il veut que l'ordinateur lance un dé pour décider du vainqueur.
+
+Il se dit : \og Je vais écrire une fonction qui lance un dé. \fg
+
+Mais comment faire pour avoir un nombre aléatoire en Python ?
+
+Python, tout seul dans son coin, ne sait pas faire de l'aléatoire. Il est trop sérieux. Il est trop rationnel. Il a besoin d'aide.
+
+C'est là qu'interviennent les \textbf{bibliothèques}.
+
+\subsection{Importer une bibliothèque : l'entrepôt à outils}
+
+Python est un langage riche, mais il n'a pas tout dans ses poches. Heureusement, des milliers de développeurs ont écrit des fonctions toutes faites, organisées en \textbf{bibliothèques} (aussi appelées \textit{modules}). Vous pouvez les importer chez vous, comme si vous empruntiez des livres dans une bibliothèque géante.
+
+Pour utiliser une bibliothèque, on écrit \texttt{import nom\_du\_module}. Une fois importée, on peut utiliser toutes ses fonctions en les préfixant par le nom du module.
+
+\begin{lstlisting}[language=Python]
+	import random  # J'ouvre la porte de l'entrepot "random"
+	
+	# Je prends une fonction qui me donne un nombre aleatoire entre 1 et 6
+	de = random.randint(1, 6)
+	print("Le de est tombe sur :", de)
+\end{lstlisting}
+
+\begin{flushleft}
+	\textbf{Ce que vous devez retenir :}
+\end{flushleft}
+\begin{itemize}
+	\item [\ding{172}] \texttt{import} se met en haut du fichier.
+	\item [\ding{173}] Pour appeler une fonction d'un module, on écrit \texttt{module.fonction()}.
+	\item [\ding{174}] Il existe des modules pour tout : mathématiques, gestion de fichiers, création de jeux, et bien sûr, le Deep Learning !
+\end{itemize}
+
+\subsection{La fonction "lancer de dé" version fonction + module}
+
+Maintenant, on peut créer notre propre fonction qui utilise la magie de \texttt{random}.
+
+\begin{lstlisting}[language=Python]
+	import random
+	
+	def lancer_de():
+	return random.randint(1, 6)
+	
+	# Test
+	print("Lancer 1 :", lancer_de())
+	print("Lancer 2 :", lancer_de())
+	print("Lancer 3 :", lancer_de())
+\end{lstlisting}
+
+Vous venez de combiner trois concepts : fonction, module, et boucle. Vous êtes en train de grimper dans la hiérarchie du code. Respectez-vous.
+
+\subsection{Le module random : le roi du hasard}
+
+Le module \texttt{random} est un petit génie. Il sait faire plein de choses avec le hasard.
+
+\begin{lstlisting}[language=Python]
+	import random
+	
+	# Lancer un de
+	print(random.randint(1, 6))
+	
+	# Choisir un fruit au hasard dans une liste
+	fruits = ["pomme", "banane", "orange", "kiwi"]
+	fruit_aleatoire = random.choice(fruits)
+	print("Aujourd'hui, je mange une", fruit_aleatoire)
+	
+	# Melanger une liste
+	cartes = ["as", "roi", "dame", "valet", "10"]
+	random.shuffle(cartes)
+	print("Cartes melangees :", cartes)
+\end{lstlisting}
+
+\subsection{Le module math : la calculette surpuissante}
+
+Si vous avez besoin de faire des calculs avancés, il y a \texttt{math}.
+
+\begin{lstlisting}[language=Python]
+	import math
+	
+	# Racine carree
+	print("Racine de 16 :", math.sqrt(16))  # 4.0
+	
+	# Valeurs constantes
+	print("Pi :", math.pi)  # 3.141592653589793
+	print("Exponentiel :", math.e)  # 2.718281828459045
+	
+	# Arrondir a l'entier superieur
+	print("3.2 arrondi au superieur :", math.ceil(3.2))  # 4
+\end{lstlisting}
+
+\subsection{Importer en donnant un surnom}
+
+Parfois, le nom du module est trop long à écrire. On peut lui donner un surnom avec \texttt{as}.
+
+\begin{lstlisting}[language=Python]
+	import random as rd
+	import math as mt
+	
+	print(rd.randint(1, 6))  # random devient rd
+	print(mt.sqrt(25))       # math devient mt
+\end{lstlisting}
+
+\subsection{Importer seulement une fonction spécifique}
+
+Si vous n'avez besoin que d'une seule fonction d'un module, vous pouvez l'importer directement.
+
+\begin{lstlisting}[language=Python]
+	from random import randint
+	
+	print(randint(1, 6))  # Pas besoin de ecrire random.
+\end{lstlisting}
+
+\textbf{Attention} : cette méthode est pratique, mais si vous importez plusieurs fonctions de plusieurs modules, vous pouvez vous perdre. Utlisez-la avec parcimonie.
+
+\subsection{Application pratique : le concours de pronostics de Youssouf}
+
+On va créer un petit programme qui choisit le vainqueur d'un match de foot au hasard.
+
+\begin{lstlisting}[language=Python]
+	import random
+	
+	def match_aleatoire(equipe1, equipe2):
+	gagnant = random.choice([equipe1, equipe2])
+	return gagnant
+	
+	# Programme principal
+	equipeA = "Ngazidja"
+	equipeB = "Mwali"
+	
+	for i in range(5):
+	gagnant = match_aleatoire(equipeA, equipeB)
+	print("Match", i+1, ":", gagnant, "gagne !")
+\end{lstlisting}
+
+\subsection{Conclusion : les bibliothèques, votre armée secrète}
+
+Les bibliothèques, c'est votre armée de robots invisibles qui font le boulot à votre place.
+
+Avec elles, vous pouvez :
+
+\begin{itemize}
+	\item [\ding{172}] Générer du hasard avec \texttt{random}.
+	\item [\ding{173}] Faire des maths complexes avec \texttt{math}.
+	\item [\ding{174}] Lire et écrire des fichiers avec \texttt{os} et \texttt{sys}.
+	\item [\ding{175}] Créer des jeux avec \texttt{pygame}.
+	\item [\ding{176}] Et surtout, faire du \textbf{Deep Learning} avec \texttt{tensorflow} ou \texttt{torch} !
+\end{itemize}
+
+La semaine prochaine, on va utiliser tout ce qu'on a appris pour faire quelque chose de vraiment magique : on va entraîner un ordinateur à reconnaître des images.
+
+Alors, préparez-vous. Ça va être spectaculaire.
+
+\newpage
+
+\textit{\small "Un programmeur paresseux est un bon programmeur. Il trouve les raccourcis pour ne pas travailler. Et ces raccourcis, ce sont les bibliothèques."}
+
+
+\section{Projets}
+
+\subsection{Le problème du jour : vous êtes un agent secret}
+
+Bravo, agent secret. Vous avez terminé votre formation de base. Vous savez maintenant :
+
+\begin{itemize}
+	\item [\ding{172}] Ranger des informations dans des variables.
+	\item [\ding{173}] Faire des calculs comme un calculateur humain.
+	\item [\ding{174}] Prendre des décisions avec les conditions.
+	\item [\ding{175}] Répéter des actions avec les boucles.
+	\item [\ding{176}] Organiser vos données avec des listes, des tuples et des dictionnaires.
+	\item [\ding{177}] Créer vos propres robots avec des fonctions.
+	\item [\ding{178}] Utiliser les bibliothèques des autres pour gagner du temps.
+\end{itemize}
+
+Vous êtes prêt pour votre première mission.
+
+Votre mission, si vous l'acceptez, consiste à réaliser trois projets. Vous pouvez les faire dans l'ordre ou pêle-mêle, comme vous voulez. L'important est de tester, de planter, de recommencer, et de triompher.
+
+\subsection*{Projet 1 : La calculette de l'apocalypse}
+
+Youssouf tient son stand de beignets au marché de Volo-Volo. Il est fatigué de faire les calculs à la main. Il veut une calculette qui fait tout. Il veut additionner, soustraire, multiplier, diviser, et même calculer des puissances.
+
+Écrivez un programme qui demande deux nombres à l'utilisateur, puis affiche :
+
+\begin{itemize}
+	\item [\ding{182}] Leur somme (\texttt{+}).
+	\item [\ding{183}] Leur différence (\texttt{-}).
+	\item [\ding{184}] Leur produit (\texttt{*}).
+	\item [\ding{185}] Leur division réelle (\texttt{/}).
+	\item [\ding{186}] Leur division entière (\texttt{//}).
+	\item [\ding{187}] Le premier nombre élevé à la puissance du second (\texttt{**}).
+\end{itemize}
+
+\begin{flushleft}
+	\textbf{Astuce :}
+\end{flushleft}
+Utilisez \texttt{input()} pour demander les nombres, et convertissez-les en \texttt{float()} ou \texttt{int()} selon vos besoins. N'oubliez pas que \texttt{input()} renvoie toujours du texte (une \texttt{str}). Vous devez le transformer en nombre avant de faire des calculs.
+
+\textbf{Exemple de squelette :}
+
+\begin{lstlisting}[language=Python]
+	# La calculette de Youssouf
+	print("Bienvenue dans la calculette de l'apocalypse !")
+	
+	# Demander les deux nombres
+	nombre1 = float(input("Donne le premier nombre : "))
+	nombre2 = float(input("Donne le deuxieme nombre : "))
+	
+	# Faire les calculs
+	print("Somme :", nombre1 + nombre2)
+	print("Difference :", nombre1 - nombre2)
+	print("Produit :", nombre1 * nombre2)
+	print("Division reelle :", nombre1 / nombre2)
+	print("Division entiere :", nombre1 // nombre2)
+	print("Puissance :", nombre1 ** nombre2)
+\end{lstlisting}
+
+\subsection*{Projet 2 : Le détecteur de pair/impair}
+
+Soirfane est un grand fan de foot. Il veut organiser des équipes pour le match du vendredi. Il veut savoir si le nombre total de joueurs est pair ou impair.
+
+Écrivez un programme qui demande un nombre à l'utilisateur, puis affiche s'il est pair ou impair.
+
+\begin{flushleft}
+	\textbf{Bonus :}
+\end{flushleft}
+Affichez tous les nombres pairs de 0 jusqu'au nombre saisi.
+
+\textbf{Exemple de squelette :}
+
+\begin{lstlisting}[language=Python]
+	# Le detecteur de pair/impair de Soirfane
+	print("Le detecteur de pair/impair est la !")
+	
+	nombre = int(input("Donne un nombre entier : "))
+	
+	if nombre % 2 == 0:
+	print(nombre, "est un nombre pair.")
+	else:
+	print(nombre, "est un nombre impair.")
+	
+	# BONUS : afficher tous les nombres pairs de 0 a nombre
+	print("Les nombres pairs de 0 a", nombre, "sont :")
+	for i in range(0, nombre + 1, 2):
+	print(i, end=" ")
+	print()  # Pour un retour a la ligne
+\end{lstlisting}
+
+\subsection*{Projet 3 : La machine à insulter (version améliorée)}
+
+Hadidja est la plus gentille du lycée de Bambao. Mais elle a un secret : elle a créé un robot qui insulte ses potes... gentiment. Elle veut une fonction qui prend un nom en paramètre et qui renvoie une phrase du type :
+
+\og Hé [nom], tu es une [insulte aléatoire] ! \fg
+
+\begin{flushleft}
+	\textbf{Instructions :}
+\end{flushleft}
+\begin{itemize}
+	\item [\ding{182}] Créez une liste de 5 insultes amicales. Par exemple : \og tête de patate \fg, \og lapin crétin \fg, \og narvalo \fg, \og koala drogué \fg, \og génie du clavier \fg.
+	\item [\ding{183}] Écrivez une fonction \texttt{machine\_a\_insulter(nom)} qui :
+	\begin{itemize}
+		\item Prend un nom en paramètre.
+		\item Choisit une insulte au hasard dans la liste (utilisez le module \texttt{random}).
+		\item Renvoie la phrase formatée.
+	\end{itemize}
+	\item [\ding{184}] Appelez cette fonction trois fois pour trois noms différents (vous pouvez les demander à l'utilisateur avec \texttt{input()}).
+\end{itemize}
+
+\textbf{Exemple de squelette :}
+
+\begin{lstlisting}[language=Python]
+	# La machine a insulter de Hadidja
+	import random
+	
+	# 1. La liste des insultes
+	insultes = ["tete de patate", "lapin cretin", "narvalo", "koala drogue", "genie du clavier"]
+	
+	# 2. La fonction
+	def machine_a_insulter(nom):
+	insulte = random.choice(insultes)
+	return "He " + nom + ", tu es un(e) " + insulte + " !"
+	
+	# 3. Test avec trois utilisateurs
+	nom1 = input("Nom du premier victime : ")
+	nom2 = input("Nom du deuxieme victime : ")
+	nom3 = input("Nom du troisieme victime : ")
+	
+	print(machine_a_insulter(nom1))
+	print(machine_a_insulter(nom2))
+	print(machine_a_insulter(nom3))
+\end{lstlisting}
+
+\subsection{Conseil du samedi soir}
+
+Vous allez planter. C'est normal. Ce n'est pas grave. Tout le monde plante. Les programmeurs professionnels plantent tous les jours. La différence, c'est qu'ils savent lire les messages d'erreur.
+
+Quand vous voyez une erreur rouge :
+
+\begin{itemize}
+	\item [\ding{172}] \textbf{Lisez-la} : elle vous dit où (le numéro de ligne) et quoi (le type d'erreur).
+	\item [\ding{173}] \textbf{Respirez} : ce n'est pas la fin du monde.
+	\item [\ding{174}] \textbf{Corrigez} : une petite faute à la fois.
+	\item [\ding{175}] \textbf{Relancez} : le code pour voir si ça marche.
+	\item [\ding{176}] \textbf{Répétez} : jusqu'à ce que ça marche.
+\end{itemize}
+
+\subsection{Conclusion : vous êtes des héros}
+
+En une semaine, vous avez appris ce qu'un lycéen normal met un semestre à comprendre. Vous êtes maintenant capables de :
+
+\begin{itemize}
+	\item [\ding{172}] Lire et écrire du code Python.
+	\item [\ding{173}] Comprendre ce qu'est une variable, une condition, une boucle, une liste, une fonction, une bibliothèque.
+	\item [\ding{174}] Résoudre des problèmes simples avec des programmes.
+	\item [\ding{175}] Et surtout, ne plus avoir peur de l'ordinateur.
+\end{itemize}
+
+La semaine prochaine, on va utiliser tout ça pour faire quelque chose de vraiment spectaculaire : on va entraîner un ordinateur à reconnaître des images. On va utiliser des bibliothèques de Deep Learning. On va cliquer sur \og Jouer \fg, et la magie va opérer.
+
+Préparez-vous. Ça va être épique.
+
+\newpage
+
+\textit{\small "L'ordinateur est un outil. La programmation est un super-pouvoir. Et vous, vous venez d'apprendre à l'utiliser."}
 \end{document}
