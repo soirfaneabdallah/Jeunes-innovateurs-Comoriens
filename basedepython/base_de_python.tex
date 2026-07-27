@@ -1,0 +1,221 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage{titletoc}
+\usepackage{mathptmx} % Times New Roman
+\usepackage{tgschola}
+\usepackage{tikz}
+%\usepackage{courier}
+\usepackage{sectsty}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\usepackage[T1]{fontenc}
+\usepackage{tcolorbox}
+\usepackage{shorttoc}
+\usepackage{fancyhdr}
+\usepackage{pdfpages}
+\usepackage{enumitem}
+\usepackage{enumerate,pifont}
+\usepackage[french]{babel}
+\usepackage[Lenny]{fncychap}% le package pour boite des chapitres 
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18} % Utilisation de la version 1.18 de pgfplots
+\usepackage{charter}
+\usepackage[normalem]{ulem}
+\tcbset{
+	mybox/.style={
+		sharp corners, % Coins non arrondis
+		colback=white, % Couleur de fond
+		colframe=gray, % Couleur du cadre
+		width=\textwidth, % Largeur de la boîte
+		height=2cm, % Hauteur de la boîte
+		fonttitle=\bfseries, % Police du titre
+		title={#1}, % Titre de la boîte
+		valign=center, % Alignement vertical du contenu
+	}
+}
+\usepackage{listings}
+% Configuration du package listings pour le code Python
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,225,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstset{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{red},
+	numberstyle=\tiny\color{black},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize\ttfamily,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\usepackage[left=1.4cm,right=1.4cm,top=2cm,bottom=2cm]{geometry}
+\author{Soirfane Abdallah Houmadi}
+\begin{document}
+	
+		\thispagestyle{empty}% 
+	     
+
+	    \section{Les fondations du programmation Python}
+	    Python est réputé pour sa syntaxe claire et lisible, ce qui en fait un excellent langage de programmation pour les débutants. Avant de plonger dans des projets plus complexes, il est essentiel de maîtriser les instructions de base qui constituent les fondements de la programmation en Python.
+	    \section{Variables et Types de Données}
+	    En Python, vous pouvez facilement déclarer des variables sans spécifier explicitement leur type de données. Le type est automatiquement attribué en fonction de la valeur assignée :\\
+	    \textbf{Exemple:}\\
+         \begin{lstlisting}[language=Python]
+ 
+message = "Bonjour"
+nombre = 25 
+         \end{lstlisting}
+ \textbf{\begin{flushleft}
+ 		Ce que vous devez retenir:
+ \end{flushleft}}
+\begin{itemize}
+	\item [\ding{172}] Pour déclarer une variable, il faut la donner un nom: " message" et "nombre" comme l'exemple précédent le montre.
+	\item [\ding{173}] Si vous déclarer une variable, il faut systématiquement l'attribuer une valeur, pour que Python comprendre le type du variable.
+\end{itemize}
+Pour voir le type d'une valeur en Python, on utilise la fonction \textbf{type}:
+  \begin{lstlisting}[language=Python]
+message = "Bonjour"
+print(type(message))
+\end{lstlisting}
+\`A cette stade peut-\^etre la notion de \textbf{fonction} ne vous parle pas, mais ne vous en fait pas une simple copie coller fera largement l'affaire.\\
+\textbf{Types de Données}:
+\begin{lstlisting}[language=Python]
+nom = "Ali" # str (String,Chaine de caractere)
+age=19 #int (Entier)
+taille= 1.70 # flottant(reel)
+etuiant=True # Boolleen
+\end{lstlisting}
+Comme vous le remarquez, il y a du code précéder par le symbole  dièse. C'est ce qu'on appel un commentaire, cette notion existe sur tout les langages de programmation mais il est exprimer d'une manière différente. Par exemple en \textbf{Python} on utilise le symbole dièse et double slashe et  en \textbf{Java}, bref vous avez compris l'idée. Et là vous vous demander peut \^etre \textbf{ce quoi cet histoire commentaire}, \\eh bien on utilise les commentaire pour commenter notre code et ce dernier ne sera pas pris en considération lors de exécution.\\
+\textbf{Exemple:}
+\begin{lstlisting}[language=Python]
+# Je declare une variable de type <str> et je l'affecte a la valeur <Ali>
+nom = "Ali"
+\end{lstlisting}
+\section{Opérations de base et Structures de contrôle}
+\subsection{Opérations de base}
+Dans la section précédente, on a vu comment déclarer des variables, connaître leurs types et même faire des commentaires. \`A présent , nous allons apprendre les bases des opérations arithmétiques et de comparaison en Python. Pas si vite, c'est quoi une opération arithmétique ? Eh bien, ce sont des opérations mathématiques fondamentales que vous pouvez réaliser facilement avec des nombres.
+\begin{itemize}
+	\item [\ding{182}] Opération arithmétique
+	\begin{lstlisting}[language=Python] 
+	# Operation arithmetique
+	x=1
+	y=3.6
+	print(x + y)  # L'addition de x et y
+	print(x - y)  # La soustraction de x et y
+	print(x * y)  # La multiplication de x par y
+	print(x / y)  # La division reel de x par y
+	print(x // y) # La division entier de x par y
+	print(x ** y) # x exposant y
+	\end{lstlisting}
+	\item [\ding{183}] Opération de comparaison
+	\begin{lstlisting}[language=Python]
+	# Operation comparaison
+	x=1
+	y=3.6
+	print(x < y)     # inferiorite
+	print(x > y)     # superiorite
+	print(x <= y)    # inferieur ou egale , meme chose pour superieur ou egale
+	print(x != y)    # difference
+	print(x == y)    # egalite
+	\end{lstlisting}
+	\item [\ding{184}] Opération de Logique
+	\begin{lstlisting}[language=Python]
+	# Operation de Logique
+	print(True & True) # AND(et)
+	print(False | True) # OR(ou)
+	print(False ^ True) # XOR(ou exlusif)
+	\end{lstlisting}
+\end{itemize}
+\par Pour bien comprendre ce code, il est important de l'exécuter vous-même, en suivant chaque étape attentivement pour une meilleure assimilation avant de poursuivre notre aventure. N'oubliez pas d'ajouter chaque information que vous jugez utile dans votre boîte à outils de développeur. Et là, vous allez me dire : "C'est bon, on a compris la notion d'opération arithmétique. Si nous faisons l'addition de deux nombres, nous obtenons un nombre. Mais si nous effectuons une opération de comparaison, que devrions-nous obtenir ?" En fait, c'est simple à comprendre. Disons 2 < 3 (2 est inférieur à 3) : vrai ou faux ? Et c'est tout, je pense que vous avez déjà la réponse. Une opération de comparaison nous renvoie soit vrai (\textbf{True}) soit faux (\textbf{False}). En autre terme on obtient un Booléen. Et c'est la même avec les opérations de logique. C'est trop beau n'est ce pas ! \\
+Vous pouvez combiner ces trois opérations pour créer des structures plus complexe et intéressantes:\\
+\textbf{Exemple:}
+\begin{lstlisting}[language=Python]
+# Declaration des variables
+x,y=1,3
+print((x+y) >= 3 & x >0)
+\end{lstlisting}
+\subsection{Structures de contrôle : Conditions et Boucles}
+\par Nous allons maintenant explorer deux éléments fondamentaux de la programmation : les conditions et les boucles. Ces structures de contrôle permettent d'exécuter des morceaux de code de manière sélective ou répétée. Commençons par les conditions.
+
+\begin{itemize}
+	\item [\ding{182}] \textbf{Conditions}
+	\par Une condition permet de tester si une expression est vraie ou fausse, et d'exécuter un bloc de code en conséquence. En Python, on utilise les instructions `if`, `elif`, et `else` pour cela.
+	
+	\begin{lstlisting}[language=Python]
+	# Exemples de conditions
+	x = 10
+	y = 5
+	
+	if x > y:
+	print("x est plus grand que y")
+	elif x == y:
+	print("x est egal a y")
+	else:
+	print("x est plus petit que y")
+	\end{lstlisting}
+	
+	\par Ici, la condition `if` vérifie si `x` est plus grand que `y`. Si c'est vrai, le premier bloc est exécuté. Si c'est faux, on passe à la condition `elif` pour vérifier si `x` est égal à `y`. Enfin, si aucune des deux conditions précédentes n'est vraie, le bloc `else` est exécuté.
+	
+	\par Vous pouvez imaginer des conditions encore plus complexes en combinant plusieurs expressions à l'aide des opérateurs logiques (`and`, `or`, etc.).
+	
+	\item [\ding{183}] \textbf{Boucles}
+	\par Les boucles permettent d'exécuter un morceau de code plusieurs fois, soit pour un nombre déterminé de répétitions, soit tant qu'une condition est vraie. Il existe deux types principaux de boucles en Python : la boucle `for` et la boucle `while`.
+	
+	\textbf{Boucle for} :
+	\par La boucle `for` permet de parcourir une séquence (comme une liste, une chaîne de caractères, etc.) et d'exécuter un bloc de code pour chaque élément de cette séquence.
+	
+	\begin{lstlisting}[language=Python]
+	# Boucle for
+	fruits = ["pomme", "banane", "orange"]
+	for fruit in fruits:
+	print(fruit)
+	\end{lstlisting}
+	
+	\par Dans cet exemple, la boucle `for` parcourt chaque élément de la liste `fruits` et l'affiche. À chaque itération, la variable `fruit` prend la valeur de l'élément suivant dans la liste.
+	
+	\textbf{Boucle while} :
+	\par La boucle `while` permet d'exécuter un bloc de code tant qu'une condition est vraie.
+	
+	\begin{lstlisting}[language=Python]
+	# Boucle while
+	i = 0
+	while i < 5:
+	print(i)
+	i += 1  # equivalent e i = i + 1
+	\end{lstlisting}
+	
+	\par Ici, tant que la variable `i` est inférieure à 5, la boucle continue de s'exécuter, et à chaque itération, la valeur de `i` est incrémentée. Attention aux boucles infinies si la condition ne devient jamais fausse !
+	
+	\item [\ding{184}] \textbf{Combiner conditions et boucles}
+	\par Vous pouvez bien sûr combiner des conditions et des boucles pour créer des programmes plus complexes. Par exemple, en utilisant une boucle avec une condition `if` pour ne traiter que certains éléments :
+	
+	\begin{lstlisting}[language=Python]
+	# Combinaison de condition et boucle
+	for i in range(10):
+	if i % 2 == 0:  # Si i est pair
+	print(f"{i} est un nombre pair")
+	else:
+	print(f"{i} est un nombre impair")
+	\end{lstlisting}
+	
+	\par Dans cet exemple, la boucle parcourt les nombres de 0 à 9, et pour chaque nombre, la condition `if` vérifie si le nombre est pair (`i \% 2 == 0`). Si c'est le cas, le nombre est affiché comme pair, sinon il est affiché comme impair.
+\end{itemize}
+
+\par Maintenant que nous avons vu les bases des conditions et des boucles, vous devriez être en mesure de contrôler efficacement le flux d'exécution de vos programmes. En combinant ces structures, vous pouvez écrire des scripts plus dynamiques et interactifs. Continuez à expérimenter ces concepts dans vos propres projets et ajoutez-les à votre boîte à outils Python !
+
+\end{document}
