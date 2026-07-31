@@ -10,60 +10,60 @@
 \usepackage{tcolorbox}
 \usepackage{enumitem}
 \usepackage{pifont}
-\usepackage[Lenny]{fncychap}
 \usepackage{fancyhdr}
-
+\usepackage{geometry}
 \usepackage{listings}
 \usepackage{hyperref}
-\usepackage{tikz}
 \usepackage{float}
-\usepackage{caption}
-\usepackage{subcaption}
 \usepackage{charter}
-\usepackage[normalem]{ulem}
+\usepackage{csquotes}
+\usepackage{tikz}
+\usetikzlibrary{shapes,positioning,shadows,decorations.pathmorphing}
 
 % Configuration de la géométrie
-\usepackage[left=1.4cm,right=1.4cm,top=2cm,bottom=2cm]{geometry}
+\geometry{left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
 
 % Configuration des couleurs
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-\definecolor{titleblue}{RGB}{0,102,204}
 \definecolor{warningred}{RGB}{204,0,0}
 \definecolor{successgreen}{RGB}{0,153,0}
+\definecolor{pyblue}{RGB}{55,118,171}
+\definecolor{pyyellow}{RGB}{255,212,59}
+\definecolor{spyderred}{RGB}{200,50,50}
 
-% Configuration du code Python
 \lstset{
-	backgroundcolor=\color{backcolour},   
+	backgroundcolor=\color{backcolour},
 	commentstyle=\color{codegreen},
 	keywordstyle=\color{red},
 	numberstyle=\tiny\color{codegray},
 	stringstyle=\color{codepurple},
 	basicstyle=\footnotesize\ttfamily,
-	breakatwhitespace=false,         
-	breaklines=true,                 
-	captionpos=b,                    
-	keepspaces=true,                 
-	numbers=left,                    
-	numbersep=5pt,                  
-	showspaces=false,                
+	breakatwhitespace=false,
+	breaklines=true,
+	captionpos=b,
+	keepspaces=true,
+	numbers=left,
+	numbersep=5pt,
+	showspaces=false,
 	showstringspaces=false,
-	showtabs=false,                  
+	showtabs=false,
 	tabsize=2,
 	frame=single,
 	framerule=1pt,
 	rulecolor=\color{codegray}
 }
 
-% Boîtes personnalisées
+% Boîtes personnalisées avec bords arrondis
 \newtcolorbox{astuce}{
 	colback=yellow!10!white,
 	colframe=yellow!50!black,
 	title=Astuce,
 	fonttitle=\bfseries,
-	sharp corners
+	sharp corners,
+	rounded corners=all=5mm
 }
 
 \newtcolorbox{attention}{
@@ -71,7 +71,8 @@
 	colframe=red!50!black,
 	title=Attention~!,
 	fonttitle=\bfseries,
-	sharp corners
+	sharp corners,
+	rounded corners=all=5mm
 }
 
 \newtcolorbox{reussite}{
@@ -79,31 +80,26 @@
 	colframe=green!50!black,
 	title=Bravo~!,
 	fonttitle=\bfseries,
-	sharp corners
+	sharp corners,
+	rounded corners=all=5mm
 }
 
 \newtcolorbox{definition}{
 	colback=blue!5!white,
 	colframe=blue!50!black,
-	title=Definition,
+	title=Définition,
 	fonttitle=\bfseries,
-	sharp corners
+	sharp corners,
+	rounded corners=all=5mm
 }
 
 \newtcolorbox{etape}{
 	colback=white,
 	colframe=orange!50!black,
-	title=\textbf{\textcolor{orange}{Etape}},
+	title=\textbf{Étape},
 	fonttitle=\bfseries,
-	sharp corners
-}
-
-\newtcolorbox{installation}{
-	colback=white,
-	colframe=blue!50!black,
-	title=\textbf{Installation},
-	fonttitle=\bfseries,
-	sharp corners
+	sharp corners,
+	rounded corners=all=5mm
 }
 
 % Configuration des en-têtes
@@ -111,10 +107,27 @@
 \fancyhf{}
 \fancyhead[L]{\leftmark}
 \fancyhead[R]{\thepage}
-%\fancyfoot[C]{\textcopyright~Abdallah Houmadi SOIRFANE - \the\year}
+%\fancyfoot[C]{\copyright~Abdallah Houmadi SOIRFANE - \the\year}
 
-% Commande pour les captures d'écran
-\newcommand{\capture}[3]{
+% ------------------------------------------------------------
+% Logos stylisés dessinés en TikZ (aucune dépendance réseau).
+% Remplacent les images distantes de l'original, que LaTeX ne
+% peut de toute façon pas charger depuis une URL directement.
+% ------------------------------------------------------------
+\newcommand{\logopython}{%
+	\begin{tikzpicture}
+		\node[circle,fill=pyblue,minimum size=2.6cm,text=white,font=\bfseries\Large,align=center] {Py};
+	\end{tikzpicture}%
+}
+\newcommand{\logospyder}{%
+	\begin{tikzpicture}
+		\node[circle,fill=spyderred,minimum size=2.6cm,text=white,font=\bfseries\Large,align=center] {Spy};
+	\end{tikzpicture}%
+}
+
+% Commande pour les captures d'écran locales (à fournir par
+% l'utilisateur dans le dossier img/ -- voir annexe technique)
+\newcommand{\capture}[3]{%
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.8\textwidth]{#1}
@@ -123,16 +136,7 @@
 	\end{figure}
 }
 
-\newcommand{\capturepleine}[3]{
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=\textwidth]{#1}
-		\caption{#2}
-		\label{fig:#3}
-	\end{figure}
-}
-
-\title{\Huge\textbf{Guide d'Installation d'Anaconda}}
+\title{\Huge\textbf{Guide d'Installation Python et Spyder}}
 \author{\Large\textbf{\textit{Abdallah Houmadi SOIRFANE}}}
 \date{\Large \today}
 
@@ -145,763 +149,530 @@
 	% ============================================================
 	% PROLOGUE
 	% ============================================================
-	\section{Prologue : Le problème du jour}
-
+	\section*{Prologue~: le problème du jour}
+	\addcontentsline{toc}{section}{Prologue~: le problème du jour}
 	
-	\begin{center}
-		\fbox{\parbox{0.9\textwidth}{
-				\begin{minipage}{0.2\textwidth}
-					%\includegraphics[width=0.9\textwidth]{youssouf.jpg}
-				\end{minipage}
-				\begin{minipage}{0.75\textwidth}
-					\textbf{Youssouf a terminé son cours de Python.}
-					
-					Il est chaud. Il est prêt. Il veut installer Anaconda pour faire du Deep Learning.
-					
-					Il ouvre Google. Il tape "installer Anaconda". Il clique sur le premier lien.
-					
-					\textbf{DEUX HEURES PLUS TARD...}
-					
-					Son ordinateur ressemble à un champ de bataille.
-				\end{minipage}
-		}}
-	\end{center}
+	Youssouf a terminé son cours de Python. Il est chaud. Il est prêt. Il veut installer Python et Spyder pour commencer à coder.
 	
-	Youssouf a terminé son cours de Python. Il est chaud. Il est prêt. Il veut installer Anaconda pour faire du Deep Learning. Il ouvre Google. Il tape "installer Anaconda". Il clique sur le premier lien.
+	Il ouvre Google. Il tape «~installer Python~». Il clique sur le premier lien.
 	
-	\vspace{0.5cm}
 	\textbf{DEUX HEURES PLUS TARD...}
-	\vspace{0.5cm}
 	
-	Son ordinateur ressemble à un champ de bataille :
+	Son ordinateur ressemble à un champ de bataille~:
 	\begin{itemize}
 		\item 3 versions de Python qui se battent dans son PATH
 		\item Des messages d'erreur rouges partout
-		\item Un dossier "T\'el\'echargements" qui contient 47 fichiers .exe inutiles
+		\item Un dossier «~Téléchargements~» qui contient 47 fichiers .exe inutiles
 		\item Et une envie irrésistible de jeter son PC par la fenêtre
 	\end{itemize}
 	
-	\noindent Il aurait dû lire ce guide. Mais il ne l'a pas fait. Ne faites pas comme Youssouf.
+	Il aurait dû lire ce guide. Mais il ne l'a pas fait. Ne faites pas comme Youssouf.
 	
 	\begin{attention}
-		\textbf{Ne faites pas comme Youssouf~!} Lisez ce guide avant de commencer l'installation.
+		\textbf{Ne faites pas comme Youssouf~!} Lisez ce guide en entier avant de commencer l'installation. Il ne vous faudra que 15 minutes, et ça vous évitera deux heures de galère.
 	\end{attention}
 	
 	% ============================================================
-	% CHAPITRE 1 : C'EST QUOI ANACONDA ?
+	% SECTION 0 : VOCABULAIRE DE BASE
 	% ============================================================
-	\section{C'est quoi Anaconda ?}
+	\section{Avant de commencer~: le vocabulaire de base}
 	
-	\begin{center}
-		\fbox{\parbox{0.9\textwidth}{
-				\begin{minipage}{0.2\textwidth}
-				%	\includegraphics[width=0.9\textwidth]{frigo.jpg}
-				\end{minipage}
-				\begin{minipage}{0.75\textwidth}
-					\textbf{Anaconda, c'est comme un frigo géant pour programmeurs.}
-					
-					Imaginez que vous allez au marché de Volo-Volo. Vous avez besoin de :
-					\begin{itemize}
-						\item Des bananes (Python)
-						\item Des mangues (des bibliothèques comme NumPy, Pandas)
-						\item Du manioc (Jupyter Notebook)
-						\item Et un soda (Spyder)
-					\end{itemize}
-				\end{minipage}
-		}}
-	\end{center}
-	
-	Anaconda, c'est comme un frigo géant pour programmeurs.
-	
-	Imaginez que vous allez au marché de Volo-Volo. Vous avez besoin de :
-	\begin{itemize}
-		\item Des bananes (Python)
-		\item Des mangues (des bibliothèques comme NumPy, Pandas)
-		\item Du manioc (Jupyter Notebook)
-		\item Et un soda (Spyder)
-	\end{itemize}
-	
-	Vous pourriez tout acheter séparément. Mais Youssouf, lui, il est malin. Il va chez \textbf{Anaconda Market}, un supermarché géant qui vend TOUT en un seul pack.
+	Si vous n'avez jamais installé d'outil de développement, certains mots vont revenir sans cesse dans ce guide. Mieux vaut les comprendre \emph{avant} de foncer.
 	
 	\begin{definition}
-		\textbf{Anaconda} est une distribution Python qui inclut :
+		\textbf{Un terminal} (ou «~invite de commandes~» sur Windows) est une fenêtre où vous tapez du texte au lieu de cliquer sur des icônes. C'est l'outil que l'on utilise pour vérifier qu'un programme est bien installé, ou pour en installer un autre. Ce n'est pas réservé aux experts~: on y tape une ligne, on appuie sur Entrée, et l'ordinateur répond.
+		
+		\textbf{Comment l'ouvrir~?}
 		\begin{itemize}
-			\item Python (le langage)
-			\item Plus de 700 bibliothèques pré-installées (NumPy, Pandas, Matplotlib, Scikit-learn, TensorFlow, PyTorch...)
-			\item Des outils de développement (Jupyter, Spyder, VS Code)
-			\item Un gestionnaire d'environnements (pour ne pas tout casser)
+			\item \textbf{Windows} : touche \texttt{Windows}, tapez \texttt{cmd} ou \texttt{PowerShell}, appuyez sur Entrée.
+			\item \textbf{Mac} : \texttt{Cmd+Espace}, tapez \texttt{Terminal}, appuyez sur Entrée.
+			\item \textbf{Linux} : \texttt{Ctrl+Alt+T} dans la plupart des distributions.
 		\end{itemize}
 	\end{definition}
 	
-	\textbf{En gros : Anaconda, c'est comme si vous aviez un assistant personnel qui range votre code, installe vos bibliothèques, et ne se moque pas de vous quand vous faites une erreur.}
+	\begin{definition}
+		\textbf{Le PATH} est une liste d'endroits où votre ordinateur va chercher les programmes quand vous tapez leur nom dans un terminal. Si Python n'est pas dans cette liste, taper \texttt{python} ne fonctionnera pas, même si Python est bien installé sur le disque -- l'ordinateur ne sait simplement pas où le trouver.
+	\end{definition}
 	
-	% ============================================================
-	% CHAPITRE 2 : L'INSTALLATION
-	% ============================================================
-	\section{L'installation étape par étape}
+	\begin{definition}
+		\textbf{pip} est l'outil qui installe des «~packages~» (des bibliothèques de code écrites par d'autres) pour Python. Spyder, Pandas, Matplotlib sont des packages que l'on installe avec pip. On peut le voir comme le magasin d'applications de Python.
+	\end{definition}
 	
-	\subsection*{Étape 0 : Respirez. Vous allez y arriver.}
-	\addcontentsline{toc}{section}{Étape 0 : Respirez. Vous allez y arriver.}
-	
-	C'est important. Prenez une grande inspiration. Buvez un verre d'eau. Écoutez votre chanson préférée. Vous êtes un futur génie du code.
+	\begin{definition}
+		\textbf{Python} est un langage de programmation~: le cerveau qui va exécuter vos instructions.
+		
+		\textbf{Spyder} est un environnement de développement (IDE)~: l'endroit où vous allez écrire votre code, le tester et voir les résultats. Python peut fonctionner sans Spyder, mais Spyder ne sert à rien sans Python~: c'est pourquoi on installe toujours Python en premier.
+	\end{definition}
 	
 	\begin{center}
-		%\includegraphics[width=0.5\textwidth]{respiration.jpg}\\
-		\small \textit{Inspirez... Expirez... Vous allez y arriver.}
+		\begin{tikzpicture}
+			\node[align=center] (py) at (0,0) {\logopython\\[2pt]\textbf{Python}\\[-2pt]\footnotesize le langage};
+			\node[align=center] (spy) at (5,0) {\logospyder\\[2pt]\textbf{Spyder}\\[-2pt]\footnotesize l'atelier de travail};
+			\draw[->,thick] (py) -- node[above,font=\footnotesize]{est utilisé dans} (spy);
+		\end{tikzpicture}
 	\end{center}
 	
-	\subsection*{Étape 1 : Télécharger Anaconda}
-	\addcontentsline{toc}{section}{Étape 1 : Télécharger Anaconda}
-	
-	\subsection*{Pour Windows}
-	
-	\begin{installation}
-		\begin{enumerate}
-			\item Ouvrez votre navigateur préféré (Chrome, Firefox, ou m\^eme Edge si vous êtes un aventurier)
-			\item Allez sur : \texttt{https://www.anaconda.com/download}
-			\item Cherchez le gros bouton vert "Download" ou "T\'el\'echarger"
-			\item Cliquez dessus. \textbf{ATTENTION :} choisissez la version \textbf{Windows} (pas Mac, pas Linux)
-			\item Le téléchargement commence. C'est un fichier de \textasciitilde 600-800 Mo (ça va durer le temps de boire un café... ou deux)
-		\end{enumerate}
-	\end{installation}
-	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.7\textwidth]{anaconda_site_download.png}
-		\caption{Page de téléchargement d'Anaconda - Cliquez sur le bouton vert}
-		\label{fig:download_site}
-		\textbf{Légende :} Le bouton vert "Download" est bien visible sur la page d'accueil.
-	\end{figure}
-	
 	\begin{astuce}
-		Si vous ne savez pas quelle version choisir, prenez la version 64-bit. C'est la plus courante.
+		Pourquoi Spyder et pas un autre~? Parce que Spyder est spécialement conçu pour la data science et le calcul scientifique. Il a tout ce dont vous avez besoin sans rien de superflu. Pour plus d'informations~: \url{https://www.spyder-ide.org/}
 	\end{astuce}
 	
-	\subsection*{Pour Mac}
+	% ============================================================
+	% SECTION 2 : INSTALLATION DE PYTHON
+	% ============================================================
+	\section{Installation de Python}
 	
-	\begin{installation}
+	\subsection{Étape 1~: télécharger Python}
+	
+	\begin{etape}
 		\begin{enumerate}
-			\item Allez sur : \texttt{https://www.anaconda.com/download}
-			\item Choisissez la version \textbf{Mac} (Intel ou Apple Silicon, selon votre processeur)
-			\item \textit{Si vous ne savez pas :} Cliquez sur la pomme en haut à gauche $>$ "À propos de ce Mac"
-			\item Si vous voyez "Apple M1/M2/M3" $\rightarrow$ prenez Apple Silicon
-			\item Si vous voyez "Intel" $\rightarrow$ prenez Intel
-			\item Téléchargez le fichier .pkg
+			\item Ouvrez votre navigateur.
+			\item Allez sur~: \texttt{https://www.python.org/downloads/}
+			\item Le site détecte automatiquement votre système d'exploitation et affiche un gros bouton \textbf{Download Python}.
+			\item Cliquez dessus pour lancer le téléchargement.
 		\end{enumerate}
-	\end{installation}
+	\end{etape}
 	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.7\textwidth]{mac_processor.png}
-		\caption{Comment savoir quel processeur vous avez sur Mac}
-		\label{fig:mac_processor}
-		\textbf{Légende :} Allez dans "À propos de ce Mac" pour voir le type de processeur.
-	\end{figure}
+	\begin{astuce}
+		Python est gratuit. Si on vous demande de payer, vous n'êtes pas sur le bon site. L'URL officielle est \texttt{python.org} -- méfiez-vous des sites qui ressemblent à s'y méprendre mais dont l'adresse est légèrement différente.
+	\end{astuce}
 	
-	\subsection*{Pour Linux}
+	\subsection{Étape 2~: installer Python}
 	
-	\begin{installation}
+	\subsubsection{Sur Windows}
+	
+	\begin{etape}
 		\begin{enumerate}
-			\item Allez sur : \texttt{https://www.anaconda.com/download}
-			\item Choisissez la version \textbf{Linux}
-			\item Prenez le script d'installation en .sh
+			\item Double-cliquez sur le fichier \texttt{python-3.x.x.exe} téléchargé.
+			
+			\item \textbf{LE MOMENT CRUCIAL~:} en bas de la première fenêtre, cochez \textbf{\textcolor{red}{« Add python.exe to PATH »}}.
+			
+			\item Cliquez sur \textbf{Install Now}.
+			\item L'installation commence (elle dure une à deux minutes).
+			\item À la fin, cliquez sur \textbf{Close}.
 		\end{enumerate}
-	\end{installation}
+	\end{etape}
 	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.7\textwidth]{linux_download.png}
-		\caption{Téléchargement pour Linux - Prenez le script .sh}
-		\label{fig:linux_download}
-	\end{figure}
-	
-	\section*{Étape 2 : Lancer l'installation}
-	\addcontentsline{toc}{section}{Étape 2 : Lancer l'installation}
-	
-	\subsection*{Cas Windows}
-	
-	\begin{installation}
-		\begin{enumerate}
-			\item Double-cliquez sur le fichier \texttt{Anaconda3-\ldots-Windows-x86\_64.exe}
-			\item Votre ordinateur vous dit : "Ce programme va faire des changements sur votre ordinateur"
-			\item Vous cliquez sur \textbf{OUI}. C'est votre premier vrai choix de programmation. Félicitations.
-			
-			\item \textbf{L'écran d'installation apparaît.} C'est vert. C'est beau. C'est Anaconda.
-			\item Cliquez sur \textbf{Next} (Suivant)
-			\item \textit{Conseil du samedi soir :} Lisez pas tout. Faites confiance.
-			
-			\item \textbf{Acceptez la licence.} 
-			\begin{itemize}
-				\item C'est un texte long. Personne ne le lit. C'est comme les CGU de WhatsApp. Cliquez sur "I Agree".
-			\end{itemize}
-			
-			\item \textbf{Choisissez "Just Me"} (sauf si vous êtes administrateur et que vous voulez partager avec toute la classe... mais non, vous êtes égoïste, prenez "Just Me")
-			
-			\item \textbf{Choisissez le dossier d'installation}
-			\begin{itemize}
-				\item Par défaut : \texttt{C:\textbackslash Users\textbackslash VotreNom\textbackslash anaconda3}
-				\item Gardez-le comme ça. Ne changez pas. Votre futur vous remerciera.
-				\item \textit{Si vous changez, vous allez le regretter dans 3 mois quand vous chercherez où se cache ce fichier.}
-			\end{itemize}
-			
-			\item \textbf{LE MOMENT CRUCIAL}
-			
-			Vous arrivez à un écran avec deux options (c'est là que tout se joue) :
-			
-			\begin{enumerate}
-				\item \textbf{Non} à "Add Anaconda3 to my PATH environment variable"
-				\item \textbf{Oui} à "Register Anaconda3 as my default Python"
-			\end{enumerate}
-			
-			\item Cliquez sur \textbf{Install}
-			\begin{itemize}
-				\item L'installation commence. Ça prend 5-10 minutes.
-				\item C'est le moment de faire une prière aux dieux du code.
-			\end{itemize}
-			
-			\item À la fin, cliquez sur \textbf{Next}, puis \textbf{Finish}.
-		\end{enumerate}
-	\end{installation}
-	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.7\textwidth]{install_windows_1.png}
-		\caption{Écran de bienvenue de l'installation Windows}
-		\label{fig:win_install1}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.7\textwidth]{install_windows_2.png}
-		\caption{Acceptation de la licence - Cliquez sur "I Agree"}
-		\label{fig:win_install2}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.7\textwidth]{install_windows_3.png}
-		\caption{Choix du type d'installation - Choisissez "Just Me"}
-		\label{fig:win_install3}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.7\textwidth]{install_windows_4.png}
-		\caption{Choix du dossier d'installation - Gardez celui par défaut}
-		\label{fig:win_install4}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.7\textwidth]{install_windows_5.png}
-		\caption{LE MOMENT CRUCIAL - Décochez "Add to PATH"}
-		\label{fig:win_install5}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.7\textwidth]{install_windows_6.png}
-		\caption{Installation en cours - Patientez 5-10 minutes}
-		\label{fig:win_install6}
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.7\textwidth]{install_windows_7.png}
-		\caption{Installation terminée - Cliquez sur "Finish"}
-		\label{fig:win_install7}
-	\end{figure}
+	\begin{center}
+		\begin{tikzpicture}[scale=1]
+			\draw[thick,rounded corners,fill=gray!5] (0,0) rectangle (8,3.4);
+			\draw[fill=gray!20] (0,3.0) rectangle (8,3.4);
+			\node[font=\footnotesize\bfseries] at (4,3.2) {Python 3.x.x Setup};
+			\node[font=\footnotesize,align=left] at (4,2.4) {Install Python 3.x.x (64-bit)};
+			\draw (0.6,1.55) rectangle (1.0,1.95);
+			\draw[thick] (0.65,1.6) -- (0.8,1.45+0.05) -- (1.0,1.95);
+			\node[font=\footnotesize,anchor=west,text=red,align=left] at (1.15,1.75) {\bfseries Add python.exe to PATH};
+			\draw[fill=pyblue,rounded corners] (2.0,0.4) rectangle (4.2,0.9);
+			\node[font=\footnotesize,text=white] at (3.1,0.65) {Install Now};
+			\draw[rounded corners] (4.5,0.4) rectangle (6.2,0.9);
+			\node[font=\footnotesize] at (5.35,0.65) {Customize};
+		\end{tikzpicture}
+	\end{center}
 	
 	\begin{attention}
-		\textbf{Pourquoi ne pas cocher "Add to PATH" ?}
-		\begin{itemize}
-			\item Le PATH, c'est le GPS de votre ordinateur.
-			\item Si vous ajoutez Anaconda au PATH, il va se battre avec les autres versions de Python.
-			\item C'est comme mettre deux videurs à la porte de la boîte de nuit : ils vont se taper dessus.
-		\end{itemize}
+		\textbf{Pourquoi cocher « Add python.exe to PATH »~?}
+		
+		C'est LE piège classique. Sans cette case, votre ordinateur ne saura pas où trouver Python quand vous tapez \texttt{python} dans le terminal, même si l'installation s'est bien passée. C'est comme avoir une voiture flambant neuve, mais garée dans un garage dont vous avez perdu l'adresse. Si vous avez oublié de cocher la case, pas de panique~: relancez simplement l'installateur, choisissez «~Modify~», puis cochez la case (voir la section Dépannage).
 	\end{attention}
 	
-
-	% ============================================================
-	% CHAPITRE 3 : TESTER QUE TOUT FONCTIONNE
-	% ============================================================
-	\section{Tester que tout fonctionne}
+	\subsubsection{Sur Mac}
 	
-	Vous avez installé Anaconda. Maintenant, on va vérifier que tout marche. C'est comme après avoir monté un meuble IKEA : on vérifie que la chaise ne s'effondre pas quand on s'assoit.
-	
-	\section*{Tester avec le menu Windows}
-	
-	\begin{installation}
+	\begin{etape}
 		\begin{enumerate}
-			\item Dans la barre de recherche Windows, tapez \textbf{"Anaconda Navigator"}
-			\item Cliquez sur l'application
-			\item Un écran avec des tuiles colorées s'ouvre :
-			\begin{itemize}
-				\item \textbf{Jupyter Notebook} (la tuile bleue)
-				\item \textbf{Spyder} (la tuile avec un S)
-				\item \textbf{VS Code} (si vous l'avez installé)
-			\end{itemize}
-			\item Si vous voyez ça $\rightarrow$ \textbf{BRAVO !} L'installation est réussie !
-			\item Fermez-le pour l'instant (on reviendra plus tard)
+			\item Double-cliquez sur le fichier \texttt{python-3.x.x-macosx.pkg} téléchargé.
+			\item Cliquez sur \textbf{Continuer} et acceptez la licence.
+			\item Cliquez sur \textbf{Installer} et entrez votre mot de passe administrateur.
+			\item Cliquez sur \textbf{Fermer}.
 		\end{enumerate}
-	\end{installation}
+		Sur Mac, Python est automatiquement ajouté au PATH~: pas de case à cocher.
+	\end{etape}
 	
-	\begin{figure}[H]
-		\centering
-	%	\includegraphics[width=0.8\textwidth]{anaconda_navigator.png}
-		\caption{Anaconda Navigator - L'interface graphique avec toutes les tuiles}
-		\label{fig:navigator}
-		\textbf{Légende :} Si vous voyez cet écran, tout fonctionne !
-	\end{figure}
+	\subsubsection{Sur Linux}
 	
-	\section*{Tester avec le terminal (pour les héros)}
+	\begin{etape}
+		Python est très souvent déjà installé. Vérifiez d'abord avec~:
+		\begin{lstlisting}[language=bash]
+			python3 --version
+		\end{lstlisting}
+		Si la commande n'est pas reconnue, installez-le avec~:
+		\begin{lstlisting}[language=bash]
+			sudo apt update
+			sudo apt install python3 python3-pip
+		\end{lstlisting}
+		(Remplacez \texttt{apt} par \texttt{dnf} sur Fedora, ou \texttt{pacman -S} sur Arch, selon votre distribution.)
+	\end{etape}
 	
-	\subsection*{Sur Windows}
+	\subsection{Étape 3~: vérifier l'installation}
 	
-	\begin{installation}
+	\begin{etape}
 		\begin{enumerate}
-			\item Ouvrez le \textbf{Anaconda Prompt} (cherchez-le dans la barre de recherche)
-			\begin{itemize}
-				\item \textit{Ne cherchez pas "cmd" ou "Terminal" classique, prenez le prompt Anaconda !}
-			\end{itemize}
-			
-			\item Tapez ces commandes une par une :
-			\begin{lstlisting}[language=bash]
-				conda --version
-			\end{lstlisting}
-			$\rightarrow$ Normalement, vous voyez : \texttt{conda 24.x.x} (un numéro de version)
-			
+			\item Ouvrez un terminal (voir section précédente si vous ne savez pas comment faire).
+			\item Tapez~:
 			\begin{lstlisting}[language=bash]
 				python --version
 			\end{lstlisting}
-			$\rightarrow$ Vous devriez voir : \texttt{Python 3.11.x} (ou une version 3.x)
-			
+			\item Vous devriez voir~: \texttt{Python 3.x.x}
+			\item Tapez aussi~:
 			\begin{lstlisting}[language=bash]
-				jupyter notebook --version
+				pip --version
 			\end{lstlisting}
-			$\rightarrow$ Vous devriez voir un numéro de version
 		\end{enumerate}
-	\end{installation}
-	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.6\textwidth]{anaconda_prompt.png}
-		\caption{Anaconda Prompt - Le terminal spécial pour Anaconda}
-		\label{fig:prompt}
-		\textbf{Légende :} Cherchez "Anaconda Prompt" dans le menu Démarrer.
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.8\textwidth]{test_commands.png}
-		\caption{Test des commandes dans le terminal - Résultat attendu}
-		\label{fig:test_commands}
-		\textbf{Légende :} Les trois commandes doivent afficher des numéros de version.
-	\end{figure}
-	
-	Si toutes ces commandes marchent $\rightarrow$ \textbf{vous êtes un champion !}
-	
-	\subsection*{Sur Mac/Linux}
-	
-	\begin{installation}
-		\begin{enumerate}
-			\item Ouvrez un terminal (le vrai, le noir)
-			\item Tapez :
-			\begin{lstlisting}[language=bash]
-				conda --version
-			\end{lstlisting}
-			$\rightarrow$ Si ça dit "command not found", tapez :
-			\begin{lstlisting}[language=bash]
-				source ~/.bashrc
-			\end{lstlisting}
-			ou
-			\begin{lstlisting}[language=bash]
-				source ~/.zshrc
-			\end{lstlisting}
-			Puis réessayez.
-		\end{enumerate}
-	\end{installation}
+		Sur Mac et Linux, si \texttt{python} ne fonctionne pas, essayez \texttt{python3} -- certains systèmes distinguent les deux noms.
+	\end{etape}
 	
 	\begin{reussite}
-		\textbf{Vous avez réussi l'installation si :}
+		\textbf{Vous avez réussi si~:}
 		\begin{itemize}
-			\item Anaconda Navigator s'ouvre sans erreur
-			\item \texttt{conda --version} affiche un numéro
-			\item \texttt{python --version} affiche Python 3.x
-			\item \texttt{jupyter notebook --version} affiche un numéro
+			\item \texttt{python --version} (ou \texttt{python3 --version}) affiche \texttt{Python 3.x.x}
+			\item \texttt{pip --version} affiche un numéro de version
 		\end{itemize}
+		Si l'un des deux échoue, direction la section Dépannage -- ne restez pas bloqué, la solution y est probablement déjà écrite.
 	\end{reussite}
 	
 	% ============================================================
-	% CHAPITRE 4 : LES PIÈGES DU DÉBUTANT
+	% SECTION 3 : INSTALLATION DE SPYDER
 	% ============================================================
-	\section{Les pièges du débutant}
+	\section{Installation de Spyder}
 	
-	\section{Piège n°1 : "Anaconda Prompt" vs "Terminal normal"}
+	Maintenant que Python est installé, on va installer Spyder. Il existe deux méthodes~: choisissez celle qui vous correspond.
 	
-	\textbf{Symptôme :} Vous ouvrez le bon vieux terminal noir (cmd.exe) et vous tapez \texttt{conda --version} $\rightarrow$ \textit{BOUM} erreur.
+	\begin{center}
+		\begin{tabular}{|p{4.2cm}|p{5.3cm}|p{5.3cm}|}
+			\hline
+			& \textbf{Méthode 1~: pip} & \textbf{Méthode 2~: Anaconda} \\
+			\hline
+			Taille du téléchargement & Petite (quelques Mo) & Grande (plusieurs centaines de Mo) \\
+			\hline
+			Bibliothèques scientifiques (NumPy, Pandas...) & À installer séparément & Déjà incluses \\
+			\hline
+			Recommandé pour & Ceux qui veulent un système léger et savent déjà ce qu'ils installent & Les débutants qui veulent que «~tout marche du premier coup~» \\
+			\hline
+		\end{tabular}
+	\end{center}
 	
-	\textbf{Raison :} Le terminal normal ne connaît pas Anaconda. C'est comme demander à un poisson de monter à un arbre.
+	\subsection{Méthode 1~: installation avec pip}
 	
-	\textbf{Solution :} Utilisez \textbf{toujours} le "Anaconda Prompt" sur Windows. C'est comme un terminal normal, mais il a mangé des légumes.
-	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.7\textwidth]{erreur_conda.png}
-		\caption{Erreur "conda n'est pas reconnu" dans le mauvais terminal}
-		\label{fig:erreur_conda}
-		\textbf{Légende :} Cette erreur arrive quand on utilise le mauvais terminal.
-	\end{figure}
-	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.7\textwidth]{bon_termminal.png}
-		\caption{Utilisez le bon terminal - Anaconda Prompt}
-		\label{fig:bon_terminal}
-		\textbf{Légende :} Le Anaconda Prompt fonctionne correctement.
-	\end{figure}
-	
-	\section{Piège n°2 : "J'ai coché PATH et maintenant tout est cassé"}
-	
-	\textbf{Symptôme :} Vous avez un ancien Python installé. Vous avez installé Anaconda. Quand vous tapez \texttt{python}, il lance la mauvaise version. Vous avez l'impression d'avoir deux méchants qui se battent dans votre ordinateur.
-	
-	\textbf{Solution :}
-	\begin{enumerate}
-		\item Allez dans : \texttt{Panneau de configuration > Systeme > Parametres systeme avances}
-		\item Cliquez sur "Variables d'environnement"
-		\item Dans la section "Variables système", cherchez "Path"
-		\item Double-cliquez dessus
-		\item Assurez-vous que le chemin vers Anaconda (\texttt{C:\textbackslash Users\textbackslash VotreNom\textbackslash anaconda3}) est \textbf{EN HAUT} de la liste
-		\item Supprimez les autres chemins Python si il y en a
-	\end{enumerate}
-	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.7\textwidth]{path_variables.png}
-		\caption{Modification des variables d'environnement PATH}
-		\label{fig:path_vars}
-		\textbf{Légende :} Assurez-vous que le chemin Anaconda est en haut de la liste.
-	\end{figure}
-	
-	\section{Piège n°3 : "J'ai installé Anaconda, mais j'ai plus de place sur mon disque dur"}
-	
-	\textbf{Symptôme :} Vous avez installé Anaconda (c'est gros, \textasciitilde 600 Mo), puis vous avez installé TensorFlow (encore gros), puis PyTorch (encore plus gros). Votre disque dur pleure.
-	
-	\textbf{Raison :} Anaconda, c'est un frigo géant. Ça prend de la place.
-	
-	\textbf{Solution :} 
-	\begin{itemize}
-		\item N'installez pas toutes les bibliothèques en même temps
-		\item Utilisez des environnements (on en parle juste après)
-		\item Acceptez que votre disque dur va souffrir. C'est le prix du progrès.
-	\end{itemize}
-	
-	\section{Piège n°4 : "J'ai tout installé mais j'arrive pas à importer pandas"}
-	
-	\textbf{Symptôme :} 
-	\begin{lstlisting}[language=Python]
-		import pandas
-		# ModuleNotFoundError: No module named 'pandas'
-	\end{lstlisting}
-	
-	\textbf{Raison :} Pandas n'est pas installé (sauf que si, normalement Anaconda l'a installé, mais vous avez peut-être un environnement différent).
-	
-	\textbf{Solution :}
-	\begin{lstlisting}[language=bash]
-		conda install pandas
-	\end{lstlisting}
-	
-	C'est comme dire au vendeur : "He, donne-moi des pandas !"
-	
-	% ============================================================
-	% CHAPITRE 5 : LES ENVIRONNEMENTS CONDA
-	% ============================================================
-	\section{Les environnements conda}
-	
-	Imaginez que vous êtes à la cantine. Vous avez un plateau. Vous mettez du riz et du poisson dessus. Tout va bien.
-	
-	Maintenant, imaginez que vous avez 10 amis qui viennent manger. Chacun a ses propres goûts. Si vous mettez tout sur le même plateau, c'est le bazar.
-	
-	\textbf{Les environnements conda, c'est comme donner un plateau séparé à chaque ami.}
-	
-	\begin{definition}
-		Un \textbf{environnement conda} est un espace isolé où vous pouvez installer différentes versions de Python et de bibliothèques sans affecter les autres environnements.
-	\end{definition}
-	
-	\section*{Commandes essentielles}
-	
-	\begin{installation}
-		\textbf{Créer un environnement}
-		\begin{lstlisting}[language=bash]
-			conda create --name projet_ia python=3.11
-		\end{lstlisting}
-		C'est comme dire : "Je crée une nouvelle cuisine avec Python 3.11 et rien d'autre dedans."
-		
-		\textbf{Activer un environnement}
-		\begin{lstlisting}[language=bash]
-			conda activate projet_ia
-		\end{lstlisting}
-		C'est comme dire : "Je vais travailler dans cette cuisine maintenant."
-		
-		\textbf{Installer une bibliothèque dans un environnement}
-		\begin{lstlisting}[language=bash]
-			conda activate projet_ia
-			conda install numpy pandas matplotlib
-		\end{lstlisting}
-		
-		\textbf{Voir tous les environnements}
-		\begin{lstlisting}[language=bash]
-			conda env list
-		\end{lstlisting}
-		
-		\textbf{Désactiver un environnement}
-		\begin{lstlisting}[language=bash]
-			conda deactivate
-		\end{lstlisting}
-		
-		\textbf{Supprimer un environnement}
-		\begin{lstlisting}[language=bash]
-			conda env remove --name projet_ia
-		\end{lstlisting}
-	\end{installation}
-	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.8\textwidth]{conda_env.png}
-		\caption{Gestion des environnements conda dans le terminal}
-		\label{fig:conda_env}
-		\textbf{Légende :} Les commandes pour créer, activer et gérer les environnements.
-	\end{figure}
-	
-	% ============================================================
-	% CHAPITRE 6 : PREMIER PROJET AVEC JUPYTER
-	% ============================================================
-	\section{Premier projet avec Jupyter Notebook}
-	
-	\begin{installation}
+	\begin{etape}
 		\begin{enumerate}
-			\item Ouvrez \textbf{Anaconda Navigator}
-			\item Cliquez sur \textbf{Jupyter Notebook}
-			\item Ça ouvre un navigateur (comme Chrome ou Firefox)
-			\item Cliquez sur le bouton \textbf{New} (en haut à droite)
-			\item Choisissez \textbf{Python 3}
-			\item Vous êtes dans un notebook !
+			\item Ouvrez un terminal.
+			\item Tapez~:
+			\begin{lstlisting}[language=bash]
+				pip install spyder
+			\end{lstlisting}
+			\item Patientez quelques minutes (Spyder a besoin de plusieurs autres bibliothèques).
+			\item Pour lancer Spyder, tapez~:
+			\begin{lstlisting}[language=bash]
+				spyder
+			\end{lstlisting}
 		\end{enumerate}
-	\end{installation}
+	\end{etape}
 	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.8\textwidth]{jupyter_start.png}
-		\caption{Lancer Jupyter Notebook depuis Anaconda Navigator}
-		\label{fig:jupyter_start}
-	\end{figure}
+	\subsection{Méthode 2~: installation via Anaconda (recommandée pour débuter)}
 	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.8\textwidth]{jupyter_new.png}
-		\caption{Créer un nouveau notebook - Cliquez sur "New" puis "Python 3"}
-		\label{fig:jupyter_new}
-	\end{figure}
+	Anaconda est une distribution qui regroupe Python, Spyder et l'essentiel des bibliothèques scientifiques (NumPy, Pandas, Matplotlib) en une seule installation. C'est la méthode la plus fiable pour un débutant.
 	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.8\textwidth]{jupyter_notebook.png}
-		\caption{Jupyter Notebook - Votre premier notebook vide}
-		\label{fig:jupyter_notebook}
-	\end{figure}
+	\begin{etape}
+		\begin{enumerate}
+			\item Téléchargez Anaconda sur \texttt{https://www.anaconda.com/download}.
+			\item Installez-le comme un programme normal (suivant, suivant, installer).
+			\item Spyder est déjà installé~: pas besoin de taper la moindre commande.
+			\item Lancez-le depuis \textbf{Anaconda Navigator} (une fenêtre avec des icônes), ou directement depuis le menu Démarrer / Launchpad en cherchant «~Spyder~».
+		\end{enumerate}
+	\end{etape}
 	
-	\section*{Écrivez votre premier code}
-	
-	Dans la première cellule, écrivez :
-	
-	\begin{lstlisting}[language=Python]
-		print("Bonjour, je suis un genie du code !")
-	\end{lstlisting}
-	
-	Dans la deuxième cellule :
-	
-	\begin{lstlisting}[language=Python]
-		nombre = 42
-		print(f"La reponse a la vie, l'univers et le reste : {nombre}")
-	\end{lstlisting}
-	
-	Dans la troisième cellule :
-	
-	\begin{lstlisting}[language=Python]
-		import random
-		insultes = ["tete de patate", "lapin cretin", "narvalo"]
-		print(random.choice(insultes))
-	\end{lstlisting}
-	
-	Pour exécuter une cellule : appuyez sur \textbf{Shift + Entr\'ee}
-	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.8\textwidth]{jupyter_code.png}
-		\caption{Jupyter Notebook - Exécution du code avec Shift+Entrée}
-		\label{fig:jupyter_code}
-		\textbf{Légende :} Le résultat s'affiche en dessous de la cellule.
-	\end{figure}
+	\begin{astuce}
+		Si vous installez Anaconda, vous n'avez pas besoin de refaire l'installation de Python de la section précédente~: Anaconda l'inclut déjà. Dans ce cas, à l'étape de vérification, tapez simplement \texttt{python --version} dans le terminal \textbf{Anaconda Prompt} (Windows) plutôt que le terminal classique.
+	\end{astuce}
 	
 	% ============================================================
-	% CHAPITRE 7 : TROUBLESHOOTING
+	% SECTION 4 : DÉCOUVERTE DE SPYDER
 	% ============================================================
-	\section{Troubleshooting}
+	\section{Découverte de Spyder}
 	
-	\section{Erreur : "conda n'est pas reconnu"}
+	Quand vous ouvrez Spyder pour la première fois, l'écran est découpé en plusieurs zones. Voici à quoi vous attendre~:
 	
-	\textbf{Solution :}
-	\begin{itemize}
-		\item Sur Windows : Ouvrez le "Anaconda Prompt" (pas le terminal normal)
-		\item Sur Mac/Linux : Tapez \texttt{source \textasciitilde/.bashrc} ou \texttt{source \textasciitilde/.zshrc}
-	\end{itemize}
+	\begin{center}
+		\begin{tikzpicture}[scale=1,every node/.style={font=\footnotesize}]
+			\draw[thick] (0,0) rectangle (10,6);
+			% zone editeur (gauche, pleine hauteur)
+			\draw[fill=blue!8] (0,0) rectangle (5.2,6);
+			\node[align=center] at (2.6,3) {\textbf{1. Éditeur de code}\\(à gauche)\\[4pt]\footnotesize Vous écrivez\\vos programmes ici};
+			% zone variables (haut droite)
+			\draw[fill=green!10] (5.2,3.2) rectangle (10,6);
+			\node[align=center] at (7.6,4.6) {\textbf{2. Explorateur de}\\\textbf{variables}\\(en haut à droite)};
+			% zone console (bas droite)
+			\draw[fill=orange!10] (5.2,0) rectangle (10,3.2);
+			\node[align=center] at (7.6,1.6) {\textbf{3. Console IPython}\\(en bas à droite)\\[4pt]\footnotesize Les résultats\\s'affichent ici};
+		\end{tikzpicture}
+	\end{center}
 	
-	\section{Erreur : "Python n'est pas reconnu"}
-	
-	\textbf{Solution :}
-	\begin{itemize}
-		\item Réinstallez Anaconda (c'est radical mais ça marche)
-		\item Vérifiez le PATH (voir section plus haut)
-	\end{itemize}
-	
-	\section{Erreur : "Permission denied"}
-	
-	\textbf{Solution :}
-	\begin{itemize}
-		\item Sur Mac/Linux : Utilisez \texttt{sudo} devant la commande
-		\item Sur Windows : Lancez l'installateur en tant qu'administrateur
-	\end{itemize}
-	
-	\section{Mon ordinateur est lent !}
-	
-	\textbf{Solution :}
-	\begin{itemize}
-		\item Redémarrez l'ordinateur (oui, vraiment)
-		\item Ne lancez pas Chrome, VS Code, Spotify, et Jupyter en même temps
-		\item Acceptez que la programmation, c'est comme une course de Formule 1 : ça consomme de l'énergie
-	\end{itemize}
-	
-	\begin{figure}[H]
-		\centering
-		%\includegraphics[width=0.7\textwidth]{erreur_type.png}
-		\caption{Exemple de message d'erreur - Lisez-le pour comprendre le problème}
-		\label{fig:erreur_type}
-		\textbf{Légende :} Les messages d'erreur vous disent où et quoi corriger.
-	\end{figure}
-	
-	% ============================================================
-	% CHAPITRE 8 : LA CHECKLIST
-	% ============================================================
-	\section{La checklist du samedi soir}
-	
-	Avant de commencer à coder, vérifiez que vous avez :
+	\subsection{Les zones principales}
 	
 	\begin{enumerate}
-		\item Anaconda installé
-		\item Anaconda Prompt qui fonctionne
-		\item \texttt{conda --version} qui affiche un numéro
-		\item \texttt{python --version} qui affiche une version 3.x
-		\item Jupyter Notebook qui s'ouvre
-		\item Vous avez créé au moins un environnement
-		\item Vous avez installé pandas dans votre environnement
-		\item Vous avez testé \texttt{import pandas} dans Jupyter
+		\item \textbf{Éditeur de code (à gauche)} : c'est là que vous écrivez vos programmes, ligne par ligne, dans un fichier \texttt{.py}.
+		
+		\item \textbf{Explorateur de variables (en haut à droite)} : affiche toutes vos variables en cours d'utilisation, même les tableaux Pandas en format tableau -- très utile pour vérifier ce que contient une variable sans taper de code supplémentaire.
+		
+		\item \textbf{Console IPython (en bas à droite)} : les résultats de votre programme s'affichent ici. Elle est interactive~: vous pouvez aussi y taper des commandes directement, sans passer par un fichier.
+		
+		\item \textbf{Zone des graphiques} (un onglet à côté de l'explorateur de variables) : affiche les figures générées avec Matplotlib ou d'autres bibliothèques de visualisation.
 	\end{enumerate}
 	
-	\textbf{Si tout est coché $\rightarrow$ vous êtes prêt pour le Deep Learning !}
-	
-	\textbf{Si tout n'est pas coché $\rightarrow$ relisez ce guide. Respirez. R\'eessayez. Vous allez y arriver.}
+	\begin{astuce}
+		Vous pouvez redimensionner les zones en tirant sur les bordures, et les réorganiser via le menu \textbf{View} $\rightarrow$ \textbf{Panes}. Si vous cassez tout par accident, \textbf{View} $\rightarrow$ \textbf{Window layouts} $\rightarrow$ \textbf{Default layout} remet tout en ordre.
+	\end{astuce}
 	
 	% ============================================================
-	% CHAPITRE 9 : CONCLUSION
+	% SECTION 5 : VOTRE PREMIER PROGRAMME
+	% ============================================================
+	\section{Votre premier programme avec Spyder}
+	
+	\subsection{Étape 1~: créer un fichier}
+	
+	\begin{etape}
+		\begin{enumerate}
+			\item Dans Spyder~: \textbf{File} $\rightarrow$ \textbf{New File} (\texttt{Ctrl+N}).
+			\item Enregistrez~: \textbf{File} $\rightarrow$ \textbf{Save} (\texttt{Ctrl+S}).
+			\item Nommez-le, par exemple \texttt{mon\_premier.py}. L'extension \texttt{.py} indique que c'est un fichier Python.
+		\end{enumerate}
+	\end{etape}
+	
+	\subsection{Étape 2~: écrire le code}
+	
+	\begin{etape}
+		Écrivez ceci dans l'éditeur~:
+		\begin{lstlisting}[language=Python]
+			# Mon premier programme Python dans Spyder
+			print("Bonjour le monde !")
+			
+			nom = "Youssouf"
+			age = 17
+			total = 3 * 1500 + 2 * 2000
+			
+			print(f"Total : {total}")
+			print(f"Je m'appelle {nom} et j'ai {age} ans")
+		\end{lstlisting}
+	\end{etape}
+	
+	\subsection{Étape 3~: exécuter}
+	
+	\begin{etape}
+		\begin{enumerate}
+			\item Cliquez sur le bouton \textbf{Run} (la flèche verte) ou appuyez sur \texttt{F5}.
+			\item Une fenêtre peut apparaître la première fois pour choisir les paramètres d'exécution~: laissez les valeurs par défaut et cliquez sur \textbf{Run}.
+			\item Le résultat s'affiche dans la console, en bas à droite.
+		\end{enumerate}
+	\end{etape}
+	
+	\begin{reussite}
+		\textbf{FÉLICITATIONS~!} Vous venez d'exécuter votre premier programme Python dans Spyder~!
+	\end{reussite}
+	
+	\subsection{Un deuxième exemple, un peu plus loin}
+	
+	Pour vous montrer que Python peut aussi réagir à ce que vous tapez et prendre des décisions, voici un second programme à essayer~:
+	
+	\begin{etape}
+		\begin{lstlisting}[language=Python]
+			# Un programme qui demande une note et donne une appreciation
+			note = float(input("Entrez votre note sur 20 : "))
+			
+			if note >= 16:
+			appreciation = "Excellent"
+			elif note >= 12:
+			appreciation = "Bien"
+			elif note >= 10:
+			appreciation = "Passable"
+			else:
+			appreciation = "Insuffisant"
+			
+			print(f"Avec {note}/20, votre appreciation est : {appreciation}")
+		\end{lstlisting}
+		Exécutez-le avec \texttt{F5}. La console va vous demander une valeur~: tapez un nombre, par exemple \texttt{14}, puis appuyez sur Entrée.
+	\end{etape}
+	
+	\begin{astuce}
+		Si vous voulez exécuter seulement quelques lignes sans relancer tout le fichier, sélectionnez-les puis appuyez sur \texttt{F9}. C'est très pratique pour tester un petit bout de code isolément.
+	\end{astuce}
+	
+	% ============================================================
+	% SECTION 6 : DÉPANNAGE
+	% ============================================================
+	\section{Dépannage}
+	
+	\subsection{Erreur~: «~python n'est pas reconnu~»}
+	
+	\textbf{Cause~:} vous n'avez pas coché «~Add python.exe to PATH~» à l'installation (Windows).
+	
+	\textbf{Solution~:}
+	\begin{enumerate}
+		\item Relancez le fichier \texttt{python-3.x.x.exe} téléchargé.
+		\item Choisissez \textbf{Modify}, avancez jusqu'à l'écran «~Advanced Options~», et cochez \textbf{Add Python to environment variables}.
+		\item Fermez et rouvrez votre terminal (obligatoire, sinon le changement n'est pas pris en compte).
+	\end{enumerate}
+	
+	\subsection{Erreur~: «~pip n'est pas reconnu~»}
+	
+	\textbf{Solution~:} utilisez la forme complète, qui passe par Python lui-même~:
+	\begin{itemize}
+		\item Windows~: \texttt{python -m pip install spyder}
+		\item Mac/Linux~: \texttt{python3 -m pip install spyder}
+	\end{itemize}
+	
+	\subsection{Erreur~: «~ModuleNotFoundError: No module named '...' \,»}
+	
+	\textbf{Cause~:} vous essayez d'utiliser une bibliothèque (par exemple \texttt{pandas}) qui n'est pas installée.
+	
+	\textbf{Solution~:} installez-la avec pip, en remplaçant \texttt{nom\_module} par le nom manquant~:
+	\begin{lstlisting}[language=bash]
+		pip install nom_module
+	\end{lstlisting}
+	
+	\subsection{Plusieurs versions de Python se marchent dessus}
+	
+	\textbf{Symptôme~:} \texttt{python --version} affiche une version différente de celle que vous venez d'installer, ou Spyder utilise une bibliothèque différente de celle que vous avez installée.
+	
+	\textbf{Cause~:} plusieurs installations de Python coexistent (par exemple une version système et une version Anaconda), et le PATH pointe vers la mauvaise.
+	
+	\textbf{Solution~:} n'installez qu'\emph{une seule} méthode (pip \emph{ou} Anaconda), pas les deux en parallèle au début. Si le mal est fait, le plus simple pour un débutant est de désinstaller Python entièrement (via le Panneau de configuration sur Windows, ou en supprimant Anaconda avec son propre désinstallateur), puis de recommencer l'installation depuis le début de ce guide, une seule fois.
+	
+	\subsection{Spyder ne se lance pas}
+	
+	\textbf{Vérifiez, dans l'ordre~:}
+	\begin{itemize}
+		\item Python est bien installé (\texttt{python --version} fonctionne)
+		\item pip est disponible (\texttt{pip --version} fonctionne)
+		\item Réinstallez Spyder proprement~: \texttt{pip install --upgrade spyder}
+		\item En dernier recours, redémarrez l'ordinateur -- certaines mises à jour du PATH n'ont d'effet qu'après un redémarrage complet.
+	\end{itemize}
+	
+	\textbf{Permission refusée sur Mac/Linux~:} si une commande d'installation échoue avec «~Permission denied~», ajoutez \texttt{sudo} devant (Linux) ou ajoutez l'option \texttt{--user}~:
+	\begin{lstlisting}[language=bash]
+		pip install --user spyder
+	\end{lstlisting}
+	
+	Si rien de tout cela ne fonctionne, consultez le guide officiel~: \url{https://docs.spyder-ide.org/current/installation.html}
+	
+	% ============================================================
+	% SECTION 7 : CONCLUSION
 	% ============================================================
 	\section{Conclusion}
 	
-	Vous venez d'installer Anaconda. C'est comme si vous aviez monté un ordinateur de A à Z. Mais en plus difficile. Mais en plus satisfaisant.
+	Vous avez maintenant Python et Spyder, correctement installés et vérifiés. Tout est prêt~!
 	
-	\section*{Ce que vous avez appris}
+	\subsection{La suite}
 	
 	\begin{itemize}
-		\item Télécharger Anaconda (et pas le mauvais fichier)
-		\item L'installer sans tout casser
-		\item Ne pas cocher "Add to PATH" (vous êtes un pro maintenant)
-		\item Créer des environnements (vous êtes organisé)
-		\item Lancer Jupyter Notebook (vous êtes un scientifique)
-		\item Résoudre les problèmes (vous êtes un vrai programmeur)
-	\end{itemize}
-	
-	\section*{La semaine prochaine}
-	
-	On va :
-	\begin{itemize}
-		\item Entraîner un ordinateur à reconnaître des images
-		\item Utiliser TensorFlow et PyTorch (les bibliothèques des dieux)
-		\item Faire des trucs tellement cools que vous allez montrer à vos potes
+		\item Écrire des programmes Python de plus en plus complets (boucles, fonctions, fichiers)
+		\item Analyser des données avec Pandas
+		\item Créer des graphiques avec Matplotlib
+		\item Et bientôt, du Machine Learning et du Deep Learning~!
 	\end{itemize}
 	
 	\begin{center}
-		\fbox{\parbox{0.8\textwidth}{
+		\fbox{\parbox{0.8\textwidth}{%
 				\centering
-				\textbf{"L'installation, c'est 90\% du travail. Le code, c'est le reste."}
+				\textbf{«~L'installation, c'est 50\% du travail. Le code, c'est le reste.~»}
 				
-				\small Et si vous bloquez, relisez le guide. Et si ça marche toujours pas, 
-				redémarrez l'ordinateur. Et si ça marche toujours pas... appelez Youssouf. 
-				Il a un stand de beignets. Et il a peut-être une solution.
+				\smallskip
+				\small Si vous bloquez, relisez ce guide. Si ça ne marche toujours pas,
+				consultez la documentation officielle de Spyder.
 		}}
 	\end{center}
 	
-	% ============================================================
-	% ANNEXE
-	% ============================================================
-	\section{Annexe : Les raccourcis utiles}
+	\vspace{1cm}
+	\begin{center}
+		\LARGE \textbf{Allez, ouvrez Spyder et codez~!}
+	\end{center}
 	
+	% ============================================================
+	% ANNEXE 1 : RACCOURCIS ET COMMANDES
+	% ============================================================
+	\section*{Annexe~: raccourcis et commandes}
+	\addcontentsline{toc}{section}{Annexe~: raccourcis et commandes}
+	
+	\subsection*{Raccourcis Spyder}
 	
 	\begin{center}
-		\begin{tabular}{|c|c|}
+		\begin{tabular}{|l|l|}
 			\hline
-			\textbf{Action} & \textbf{Commande} \\
+			\textbf{Action} & \textbf{Raccourci} \\
 			\hline
-			Ouvrir Anaconda Prompt & Cherchez dans le menu Démarrer \\
-			Créer un environnement & \texttt{conda create --name nom\_env python=3.11} \\
-			Activer un environnement & \texttt{conda activate nom\_env} \\
-			Désactiver un environnement & \texttt{conda deactivate} \\
-			Installer une bibliothèque & \texttt{conda install nom\_bibliotheque} \\
-			Voir les environnements & \texttt{conda env list} \\
-			Supprimer un environnement & \texttt{conda env remove --name nom\_env} \\
-			Lancer Jupyter & \texttt{jupyter notebook} \\
-			Lancer Spyder & \texttt{spyder} \\
+			Nouveau fichier & \texttt{Ctrl+N} \\
+			Ouvrir & \texttt{Ctrl+O} \\
+			Enregistrer & \texttt{Ctrl+S} \\
+			Exécuter tout le fichier & \texttt{F5} \\
+			Exécuter la sélection/une ligne & \texttt{F9} \\
+			Commenter/décommenter & \texttt{Ctrl+1} \\
+			Effacer la console & \texttt{Ctrl+L} \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\subsection*{Commandes principales}
+	
+	\begin{center}
+		\begin{tabular}{|l|l|}
+			\hline
+			\textbf{Commande} & \textbf{Utilisation} \\
+			\hline
+			\texttt{python --version} & Vérifier la version de Python \\
+			\texttt{pip --version} & Vérifier la version de pip \\
+			\texttt{pip install spyder} & Installer Spyder \\
+			\texttt{pip install --upgrade spyder} & Mettre à jour Spyder \\
+			\texttt{pip install nom\_module} & Installer une bibliothèque \\
+			\texttt{spyder} & Lancer Spyder \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\subsection*{Petit glossaire récapitulatif}
+	
+	\begin{center}
+		\begin{tabular}{|l|p{9.5cm}|}
+			\hline
+			\textbf{Terme} & \textbf{Définition courte} \\
+			\hline
+			Terminal & Fenêtre où l'on tape des commandes texte \\
+			PATH & Liste des endroits où l'ordinateur cherche les programmes \\
+			pip & Outil qui installe des bibliothèques Python \\
+			IDE & Environnement de développement (ex. Spyder) \\
+			Package / module & Bibliothèque de code réutilisable \\
+			Script & Fichier \texttt{.py} contenant du code Python \\
 			\hline
 		\end{tabular}
 	\end{center}
 	
 	% ============================================================
+	% ANNEXE 2 : NOTE TECHNIQUE SUR LES IMAGES
+	% ============================================================
+	\section*{Note technique~: ajouter de vraies captures d'écran}
+	\addcontentsline{toc}{section}{Note technique~: ajouter de vraies captures d'écran}
+	
+	Ce document utilise des schémas dessinés en TikZ à la place de captures d'écran, afin de rester autonome (aucun fichier externe requis pour compiler). Si vous souhaitez insérer de vraies captures d'écran officielles, procédez ainsi~:
+	
+	\begin{enumerate}
+		\item Créez un dossier \texttt{img/} à côté de ce fichier \texttt{.tex}.
+		\item Téléchargez vous-même les images souhaitées (par exemple depuis \url{https://www.python.org/downloads/} ou \url{https://docs.spyder-ide.org/}) et enregistrez-les dans \texttt{img/}, par exemple sous les noms \texttt{python-path.png}, \texttt{spyder-interface.png}.
+		\item Ajoutez \texttt{\textbackslash graphicspath\{\{img/\}\}} juste après le préambule des packages.
+		\item Remplacez le bloc \texttt{tikzpicture} correspondant par~: \\
+		\texttt{\textbackslash capture\{python-path.png\}\{Légende\}\{label\}}
+	\end{enumerate}
+	
+	LaTeX ne peut pas charger une image directement depuis une URL~: le fichier doit être présent sur votre disque au moment de la compilation.
+	
+	% ============================================================
 	% REMERCIEMENTS
 	% ============================================================
-	\section{Remerciements}
-	\addcontentsline{toc}{chapter}{Remerciements}
+	\section*{Remerciements}
+	\addcontentsline{toc}{section}{Remerciements}
 	
-	Merci à :
-	\begin{itemize}
-		\item Youssouf pour ses beignets et ses questions existentielles
-		\item Soirfane pour ses problèmes de foot
-		\item Hadidja pour sa machine à insulter
-		\item Et surtout, à vous qui avez lu jusqu'ici. Vous êtes un héros. Le code vous attend.
-	\end{itemize}
+	Merci à Youssouf, Soirfane, Hadidja, et surtout à vous d'avoir lu jusqu'au bout~!
 	
 	\begin{center}
-		\LARGE \textbf{Allez, maintenant, ouvrez ce terminal. Lancez votre environnement. Écrivez votre premier code. Et surtout, amusez-vous !}
+		\textit{«~Un bon programmeur sait installer son environnement sans tout casser.~»}
 		
-		\vspace{0.5cm}
-		\Large \textit{A très vite pour le Deep Learning !}
-	\end{center}
-	
-	\begin{center}
-		\fbox{\parbox{0.8\textwidth}{
-				\centering
-				\textit{"La programmation, c'est comme un stand de beignets : si tu bosses bien, tu fais des heureux. Si tu bosses mal, tu brûles tout. Alors, fais attention à la cuisson."}
-				
-				\vspace{0.2cm}
-				--- Youssouf, expert en beignets et en code.
-		}}
+		\smallskip
+		--- Abdallah Houmadi SOIRFANE
 	\end{center}
 	
 \end{document}

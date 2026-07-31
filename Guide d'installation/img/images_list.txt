@@ -1,0 +1,16 @@
+# Liste des images téléchargées pour le guide LaTeX
+# Ce fichier est généré automatiquement
+
+Dossier des images : C:\Users\hp\Documents\Jeunes-innovateurs-Comoriens\Guide d'installation\img/
+
+Images disponibles :
+  - add_to_path.png (15770 octets)
+  - anaconda_navigator.png (355380 octets)
+  - python_download.png (15770 octets)
+  - python_logo.png (24794 octets)
+  - spyder_code.png (MANQUANT)
+  - spyder_error.png (MANQUANT)
+  - spyder_install.png (15770 octets)
+  - spyder_interface.png (MANQUANT)
+  - spyder_logo.png (15005 octets)
+  - terminal_python.png (15770 octets)
