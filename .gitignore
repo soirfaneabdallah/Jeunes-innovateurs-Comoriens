@@ -1,0 +1,77 @@
+# Fichiers de compilation LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.brf
+*.idx
+*.ilg
+*.ind
+*.synctex.gz
+*.synctex(busy)
+*.fls
+*.fdb_latexmk
+*.run.xml
+*.bcf
+*.blg
+*.auxlock
+
+# Fichiers de sortie PDF générés (si tu ne veux pas versionner le PDF)
+# Décommente la ligne ci-dessous si tu ne veux pas le PDF dans le dépôt
+# *.pdf
+
+# Dossiers de compilation
+_build/
+build/
+out/
+output/
+tmp/
+temp/
+
+# Fichiers de backup
+*.bak
+*.backup
+*.sav
+*.swp
+*.~*
+
+# Fichiers d'éditeurs
+.idea/
+.vscode/
+*.user
+*.userprefs
+*.sln
+*.suo
+*.userosscache
+*.userprefs
+
+# Fichiers spécifiques à TeXShop (macOS)
+*.synctex.gz
+*.tex.bak
+
+# Fichiers spécifiques à Texmaker
+*.log
+*.aux
+*.pdfsync
+
+# Fichiers spécifiques à Overleaf (si tu synchronises)
+.directory
+*.synctex.gz
+
+# Fichiers de cache de l'éditeur
+__pycache__/
+*.pyc
+*.pyo
+
+# Environnements virtuels
+venv/
+env/
+.venv/
+
+# Fichiers de configuration locaux
+.env
+*.local
