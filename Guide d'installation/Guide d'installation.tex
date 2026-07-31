@@ -642,23 +642,6 @@
 		\end{tabular}
 	\end{center}
 	
-	% ============================================================
-	% ANNEXE 2 : NOTE TECHNIQUE SUR LES IMAGES
-	% ============================================================
-	\section*{Note technique~: ajouter de vraies captures d'écran}
-	\addcontentsline{toc}{section}{Note technique~: ajouter de vraies captures d'écran}
-	
-	Ce document utilise des schémas dessinés en TikZ à la place de captures d'écran, afin de rester autonome (aucun fichier externe requis pour compiler). Si vous souhaitez insérer de vraies captures d'écran officielles, procédez ainsi~:
-	
-	\begin{enumerate}
-		\item Créez un dossier \texttt{img/} à côté de ce fichier \texttt{.tex}.
-		\item Téléchargez vous-même les images souhaitées (par exemple depuis \url{https://www.python.org/downloads/} ou \url{https://docs.spyder-ide.org/}) et enregistrez-les dans \texttt{img/}, par exemple sous les noms \texttt{python-path.png}, \texttt{spyder-interface.png}.
-		\item Ajoutez \texttt{\textbackslash graphicspath\{\{img/\}\}} juste après le préambule des packages.
-		\item Remplacez le bloc \texttt{tikzpicture} correspondant par~: \\
-		\texttt{\textbackslash capture\{python-path.png\}\{Légende\}\{label\}}
-	\end{enumerate}
-	
-	LaTeX ne peut pas charger une image directement depuis une URL~: le fichier doit être présent sur votre disque au moment de la compilation.
 	
 	% ============================================================
 	% REMERCIEMENTS
